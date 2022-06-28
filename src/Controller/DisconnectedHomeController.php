@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class DisconnectedHomeController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(): Response
@@ -20,6 +20,6 @@ class HomeController extends AbstractController
     public function disconnected_home(): Response
     {
         // Un utilisateur non connecté arrive sur cette page
-        return $this->render('home/index.html.twig');
+        return $this->render('disconnectedHome/index.html.twig');
     }
 }

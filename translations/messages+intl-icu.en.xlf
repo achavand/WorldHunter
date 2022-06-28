@@ -5,6 +5,18 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="FJjXiy3" resname="Découverte">
+        <source>Découverte</source>
+        <target>Discover</target>
+      </trans-unit>
+      <trans-unit id="mvpao6Q" resname="Jouer">
+        <source>Jouer</source>
+        <target>Play</target>
+      </trans-unit>
+      <trans-unit id="xfCXFdu" resname="Scores">
+        <source>Scores</source>
+        <target>Scores</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

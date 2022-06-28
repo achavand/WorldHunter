@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh; }
+
+.background {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/backgrounds/main-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #464646; }
+
+.disconnectedHeader {
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px; }
+  .disconnectedHeader .disconnectedHeader-link {
+    text-decoration: none;
+    color: white;
+    padding: 25px;
+    margin: 25px;
+    text-transform: uppercase; }
+    .disconnectedHeader .disconnectedHeader-link:nth-child(2n+1) {
+      font-size: 2rem; }
+    .disconnectedHeader .disconnectedHeader-link:nth-child(2) {
+      font-size: 3rem; }
+
+.disconnect-container {
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center; }
+
+/*# sourceMappingURL=style.css.map */
