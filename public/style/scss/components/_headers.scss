@@ -1,14 +1,12 @@
 .disconnectedHeader {
-    color: $menuLinksColor;
+    color: $primaryColor;
     font-size: $menuFontSize;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(center, center);
     height: 52px;
 
     .disconnectedHeader-link {
         text-decoration: none;
-        color: $menuLinksColor;
+        color: $primaryColor;
         padding: 25px;
         margin: 25px;
         text-transform: uppercase;

@@ -17,6 +17,78 @@
         <source>Scores</source>
         <target>Scores</target>
       </trans-unit>
+      <trans-unit id="B_1sz2v" resname="Mail">
+        <source>Mail</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="O4bEivV" resname="n'est pas une adresse mail valide.">
+        <source>n'est pas une adresse mail valide.</source>
+        <target>is not a valid email</target>
+      </trans-unit>
+      <trans-unit id="t2aroql" resname="Ce champ ne peut pas être vide.">
+        <source>Ce champ ne peut pas être vide.</source>
+        <target>The field can't be empty</target>
+      </trans-unit>
+      <trans-unit id="GaQkz5o" resname="Une adresse mail doit contenir au moins">
+        <source>Une adresse mail doit contenir au moins</source>
+        <target>The email must have at least</target>
+      </trans-unit>
+      <trans-unit id="gAk1.XQ" resname="caractères.">
+        <source>caractères.</source>
+        <target>character</target>
+      </trans-unit>
+      <trans-unit id="mnZpUC2" resname="Ce adresse mail semble être trop longue.">
+        <source>Ce adresse mail semble être trop longue.</source>
+        <target>This email is too long</target>
+      </trans-unit>
+      <trans-unit id="hRdkX4h" resname="Nom d'utilisateur">
+        <source>Nom d'utilisateur</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="sq0D_kj" resname="Le nom d'utilisateur doit contenir au moins">
+        <source>Le nom d'utilisateur doit contenir au moins</source>
+        <target>The username must have at least</target>
+      </trans-unit>
+      <trans-unit id="YD4vcGJ" resname="Le nom d'utilisateur doit contenir moins de">
+        <source>Le nom d'utilisateur doit contenir moins de</source>
+        <target>The username should constains less than</target>
+      </trans-unit>
+      <trans-unit id="KNpCP0c" resname="Les mots de passe doivent être identiques">
+        <source>Les mots de passe doivent être identiques</source>
+        <target>The passwords are not the same</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="5ljJDjg" resname="Confirmez le mot de passe">
+        <source>Confirmez le mot de passe</source>
+        <target>Password confirm</target>
+      </trans-unit>
+      <trans-unit id="yjILoDF" resname="Le mot de passe doit contenir au moins">
+        <source>Le mot de passe doit contenir au moins</source>
+        <target>The password should contains at least</target>
+      </trans-unit>
+      <trans-unit id="_u41rjw" resname="Le mot de passe doit contenir moins de">
+        <source>Le mot de passe doit contenir moins de</source>
+        <target>The password should contains less than</target>
+      </trans-unit>
+      <trans-unit id="z7GsDIB" resname="Inscription">
+        <source>Inscription</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="sBFnVlo" resname="Vous êtes connecté en tant que">
+        <source>Vous êtes connecté en tant que</source>
+        <target>You are logged in as</target>
+      </trans-unit>
+      <trans-unit id="KWS3pxj" resname="Se déconneccter">
+        <source>Se déconneccter</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="YdaVBBA" resname="Connexion">
+        <source>Connexion</source>
+        <target>Login</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

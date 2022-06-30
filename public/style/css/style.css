@@ -14,7 +14,7 @@ body {
   background-color: #464646; }
 
 .disconnectedHeader {
-  color: white;
+  color: #f2dcaa;
   font-size: 30px;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ body {
   height: 52px; }
   .disconnectedHeader .disconnectedHeader-link {
     text-decoration: none;
-    color: white;
+    color: #f2dcaa;
     padding: 25px;
     margin: 25px;
     text-transform: uppercase; }
@@ -33,8 +33,8 @@ body {
 
 .disconnect-container {
   color: white;
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: space-around;
   align-items: center; }
 
