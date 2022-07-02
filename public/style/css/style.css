@@ -23,8 +23,8 @@ body {
   .disconnectedHeader .disconnectedHeader-link {
     text-decoration: none;
     color: #f2dcaa;
-    padding: 25px;
     margin: 25px;
+    padding: 25px;
     text-transform: uppercase; }
     .disconnectedHeader .disconnectedHeader-link:nth-child(2n+1) {
       font-size: 2rem; }

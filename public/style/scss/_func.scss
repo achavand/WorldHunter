@@ -1,9 +1,13 @@
-// mixins
+// Only we need the all this values
 @mixin flex ($justifyContent, $alignItems) {
     display: flex;
     justify-content: $justifyContent;
     align-items: $alignItems;
 }
 
+// Only use when we nedd this 2 values, if we don't have another function/mixin that can be use
+@mixin marginPadding($margin, $padding){
+    margin: $margin;
+    padding: $padding;
+}
 
-// functions

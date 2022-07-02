@@ -19,29 +19,20 @@ class DisconnectedHomeController extends AbstractController
         return $this->redirectToRoute("disconnected_home");
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '/logout', name: 'logout')]
     public function logout(): void
     {
-        dd("logout");
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     #[Route('/{_locale}', name: 'disconnected_home')]
     public function disconnected_home(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
-        // Aller sur LoginFormAuthenticator si request
-        //dd($request->request);
-        // if($request->request != []) {
-        //     dd("test");
-        //     dd($request->get("post"));
-        // }
-        
-
-        // IL faut ajouter le login
-
+        // Redirection si l'utilisateur est connecté
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
+
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         

@@ -7,8 +7,7 @@
     .disconnectedHeader-link {
         text-decoration: none;
         color: $primaryColor;
-        padding: 25px;
-        margin: 25px;
+        @include marginPadding(25px, 25px);
         text-transform: uppercase;
 
         &:nth-child(2n+1){
