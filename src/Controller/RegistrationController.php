@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,14 +24,28 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        // ->add("register_date", HiddenType::class, [
+        //     "data" => $this->date,
+        //     "constraints" => [
+        //         new EqualTo([
+        //             "value" => $this->date
+        //         ])
+        //     ]
+        // 
+
+        // $generatedDate = new DateTime();
+        // $generatedDate = $generatedDate->format("d/m/Y");
+        // $this->date = $generatedDate;
+        // ])
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            $user->setRoles(["ROLE_USER"]);
+
+            $user->setRegisterDate(new \DateTime());
+
+            // encode the password
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+            $userPasswordHasher->hashPassword( $user, $form->get('password')->getData()));   
 
             $entityManager->persist($user);
             $entityManager->flush();

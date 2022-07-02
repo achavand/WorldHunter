@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -15,11 +16,27 @@ class DisconnectedHomeController extends AbstractController
         if($this->getUser() == null){
             return $this->redirectToRoute("disconnected_home");
         }
+        return $this->redirectToRoute("disconnected_home");
+    }
+
+    #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        dd("logout");
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
     #[Route('/{_locale}', name: 'disconnected_home')]
-    public function disconnected_home(AuthenticationUtils $authenticationUtils): Response
+    public function disconnected_home(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
+        // Aller sur LoginFormAuthenticator si request
+        //dd($request->request);
+        // if($request->request != []) {
+        //     dd("test");
+        //     dd($request->get("post"));
+        // }
+        
+
         // IL faut ajouter le login
 
         // if ($this->getUser()) {
@@ -27,7 +44,7 @@ class DisconnectedHomeController extends AbstractController
         // }
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-
+        
 
         // Un utilisateur non connecté arrive sur cette page
         return $this->render('disconnectedHome/index.html.twig', [

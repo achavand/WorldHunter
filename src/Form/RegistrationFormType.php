@@ -24,12 +24,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationFormType extends AbstractType
 {
-    private $date;
     public function __construct(private TranslatorInterface $translator)
     {
-        $generatedDate = new DateTime();
-        $generatedDate = $generatedDate->format("d/m/Y");
-        $this->date = $generatedDate;
+
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -55,7 +52,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         "min" => 5,
                         "max" => 255,
-                        "minMessage" => $this->translator->trans("Une adresse mail doit contenir au moins") . " {{ value }} " . $this->translator->trans("caractères."),
+                        "minMessage" => $this->translator->trans("Une adresse mail doit contenir au moins") . " {{ limit }} " . $this->translator->trans("caractères."),
                         "maxMessage" => $this->translator->trans("Ce adresse mail semble être trop longue.")
                     ])
                 ]
@@ -77,8 +74,8 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         "min" => 6,
                         "max" => 35,
-                        "minMessage" => $this->translator->trans("Le nom d'utilisateur doit contenir au moins") . " {{ value }} " . $this->translator->trans("caractères."),
-                        "maxMessage" => $this->translator->trans("Le nom d'utilisateur doit contenir moins de") . " {{ value }} " . $this->translator->trans("caractères."),
+                        "minMessage" => $this->translator->trans("Le nom d'utilisateur doit contenir au moins") . " {{ limit }} " . $this->translator->trans("caractères."),
+                        "maxMessage" => $this->translator->trans("Le nom d'utilisateur doit contenir moins de") . " {{ limit }} " . $this->translator->trans("caractères."),
                     ])
                 ]
             ])
@@ -105,24 +102,8 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         "min" => 5,
                         "max" => 70,
-                        "minMessage" => $this->translator->trans("Le mot de passe doit contenir au moins") . " {{ value }} " . $this->translator->trans("caractères."),
-                        "maxMessage" => $this->translator->trans("Le mot de passe doit contenir moins de") . " {{ value }} " . $this->translator->trans("caractères."),
-                    ])
-                ]
-            ])
-            ->add("roles", HiddenType::class, [
-                "data" => "ROLE_USER",
-                "constraints" => [
-                    new EqualTo([
-                        "value" => "ROLE_USER"
-                    ])
-                ]
-            ])
-            ->add("register_date", HiddenType::class, [
-                "data" => $this->date,
-                "constraints" => [
-                    new EqualTo([
-                        "value" => $this->date
+                        "minMessage" => $this->translator->trans("Le mot de passe doit contenir au moins") . " {{ limit }} " . $this->translator->trans("caractères."),
+                        "maxMessage" => $this->translator->trans("Le mot de passe doit contenir moins de") . " {{ limit }} " . $this->translator->trans("caractères."),
                     ])
                 ]
             ])
