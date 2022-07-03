@@ -1,5 +1,15 @@
 .disconnect-container {
     color: $white;
     width: 100%;
+    margin-top: 25px;
     @include flex(space-around, center);
+}
+
+@media screen and (max-width: $dimension1000) {
+
+    .disconnect-container {
+        flex-direction: column-reverse;
+        margin-top: 50px;
+    }
+
 }
