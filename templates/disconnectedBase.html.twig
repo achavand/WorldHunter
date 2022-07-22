@@ -15,9 +15,21 @@
         {% endblock %}
     </head>
     <body>
+        {% from "macros/modal.html.twig" import modalBuilder %}
+
         <div class="background">
             {% include "parts/disconnected-item/header.html.twig" %}
             {% block body %}{% endblock %}
         </div>
+
+        {% set idModal = "Inscription"|trans  %}
+        {% set titleModal = "Inscription"|trans  %}
+        
+        {% set contentModal = form(registrationForm) ~ "<div class='rememberLog'><a href="~ path("disconnected_home") ~">" ~ "Déjà un compte ?"|trans ~ "</a></div>" %}  
+        {{ modalBuilder(idModal, titleModal, contentModal) }}
+        
+        
+        {# form(registrationForm) #}
+
     </body>
 </html>

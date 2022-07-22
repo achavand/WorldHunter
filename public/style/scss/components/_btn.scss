@@ -1,0 +1,17 @@
+.logBtn {
+    background-color: transparent;
+    color: $darkSkyBlue;
+    width: 60%;
+    font-size: 1.2rem;
+    padding: 6px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 40px;
+    box-shadow: 2px 2px 2px black;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        box-shadow: none;
+    }
+}

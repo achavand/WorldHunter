@@ -37,7 +37,8 @@ class RegistrationFormType extends AbstractType
                 "required" => true,
                 "trim" => true,
                 "attr" => [
-                    "placeholder" => "email@email.com"
+                    "placeholder" => "email@email.com",
+                    "class" => "sfFormInput"
                 ],
                 "constraints" => [
                     new Email([
@@ -62,7 +63,8 @@ class RegistrationFormType extends AbstractType
                 "required" => true,
                 "trim" => true,
                 "attr" => [
-                    "placeholder" => $this->translator->trans("Nom d'utilisateur")
+                    "placeholder" => $this->translator->trans("Nom d'utilisateur"),
+                    "class" => "sfFormInput"
                 ],
                 "constraints" => [
                     new NotBlank([
@@ -79,8 +81,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ])
-
-            //password n'est pas encore fait ... J'ai juste ajouté le repeatedType::class, donc à ajouter toutes les options (require, trim, label, translations, constraints, ...)
             ->add('password', RepeatedType::class, [
                 "type"=> PasswordType::class,
                 "invalid_message" => $this->translator->trans("Les mots de passe doivent être identiques"),
@@ -88,9 +88,15 @@ class RegistrationFormType extends AbstractType
                 "trim" => true,
                 "first_options" => [
                     "label" => $this->translator->trans("Mot de passe"),
+                    "attr" => [
+                        "class" => "sfFormInput"
+                    ],
                 ],
                 "second_options" => [
                     "label" => $this->translator->trans("Confirmez le mot de passe"),
+                    "attr" => [
+                        "class" => "sfFormInput"
+                    ],
                 ],
                 "constraints" => [
                     new NotBlank([
@@ -116,7 +122,10 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add("submit", SubmitType::class, [
-                "label" => $this->translator->trans("Inscription")
+                "label" => $this->translator->trans("Inscription"),
+                "attr" => [
+                    "class" => "logBtn"
+                ],
             ])
 
 

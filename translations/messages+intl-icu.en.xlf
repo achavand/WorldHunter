@@ -89,6 +89,14 @@
         <source>Connexion</source>
         <target>Login</target>
       </trans-unit>
+      <trans-unit id="hr0iEGC" resname="Déjà un compte ?">
+        <source>Déjà un compte ?</source>
+        <target>Already have an account ?</target>
+      </trans-unit>
+      <trans-unit id="UQ3M96b" resname="Pas encore de compte ?">
+        <source>Pas encore de compte ?</source>
+        <target>Don't have an account</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

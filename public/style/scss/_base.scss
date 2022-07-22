@@ -12,3 +12,28 @@ body {
     background-attachment: fixed;
     background-color: #464646;
 }
+
+
+.form-block {
+    .log-form {
+        width: 100%;
+    }
+    input, label {
+        width: 100%;
+    }
+}
+
+.rememberLog {
+    margin: 16px 0;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+        text-decoration: none;
+        color: $darkSkyBlue;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
