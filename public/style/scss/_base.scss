@@ -3,6 +3,10 @@ body {
     width: 100%; height: 100vh;
 }
 
+ul {
+    list-style: none;
+}
+
 .background {
     width: 100%; height: 100%;
     background-image: url("../../assets/backgrounds/main-bg.jpg");
@@ -37,3 +41,4 @@ body {
         }
     }
 }
+

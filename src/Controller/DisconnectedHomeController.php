@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\LocaleClass;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -17,12 +18,17 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class DisconnectedHomeController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         if($this->getUser() == null){
             return $this->redirectToRoute("disconnected_home");
         }
-        return $this->redirectToRoute("disconnected_home");
+        $locale = new LocaleClass($request);
+
+        return $this->redirectToRoute("disconnected_home", [
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams()
+        ]);
     }
 
     #[Route(path: '/logout', name: 'logout')]
@@ -34,6 +40,7 @@ class DisconnectedHomeController extends AbstractController
     #[Route('/{_locale}', name: 'disconnected_home')]
     public function disconnected_home(AuthenticationUtils $authenticationUtils, Request $request,  UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        $locale = new LocaleClass($request);
         // Redirection si l'utilisateur est connecté
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -67,43 +74,9 @@ class DisconnectedHomeController extends AbstractController
         return $this->render('disconnectedHome/index.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'registrationForm' => $form->createView()
-        ]);
-    }
-
-
-    #[Route('/{_locale}#Inscription', name: 'registerHome')]
-    public function registerHome(AuthenticationUtils $authenticationUtils, Request $request,  UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
-    {
-        // Redirection si l'utilisateur est connecté
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-        
-        //dd($form->isSubmitted());
-        //dd($form->handleRequest($request));
-        if($form->isSubmitted() && $form->isValid()) {
-            dd("Local");
-            $user->setRoles(["ROLE_USER"]);
-            $user->setRegisterDate(new \DateTime());
-            $user->setPassword($userPasswordHasher->hashPassword( $user, $form->get('password')->getData()));   
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
-        }     
-
-        // Un utilisateur non connecté arrive sur cette page
-        return $this->render('disconnectedHome/index.html.twig', [
-            'registrationForm' => $form->createView()
+            'registrationForm' => $form->createView(),
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams()
         ]);
     }
 

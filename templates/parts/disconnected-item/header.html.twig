@@ -1,6 +1,28 @@
 <header class="disconnectedHeader">
-    <a href="" class="disconnectedHeader-link">{% trans %}Découverte{% endtrans %}</a>
-    <a href="" class="disconnectedHeader-link">{% trans %}Jouer{% endtrans %}</s></a>
-    <a href="" class="disconnectedHeader-link">{% trans %}Scores{% endtrans %}</a>
-    <a href="#{% trans %}Inscription{% endtrans %}" class="disconnectedHeader-link">{% trans %}Inscription{% endtrans %}</a>
+	<a href="" class="disconnectedHeader-link">{% trans %}Découverte{% endtrans %}</a>
+	<a href="" class="disconnectedHeader-link">{% trans %}Scores{% endtrans %}</a>
+	<a href="" class="disconnectedHeader-link">{% trans %}Jouer{% endtrans %}</a>
+	<a href="#{% trans %}Inscription{% endtrans %}" class="disconnectedHeader-link">{% trans %}Inscription{% endtrans %}</a>
+
+	<ul class="disconnectedHeader-link langList">
+		<li class="CurentLang">
+			<a class="nav-link" href="#">
+				<img class="flags" src="{{ asset("assets/flags/" ~ params["_locale"] ~ ".png") }}" alt="fr">
+			</a>
+
+			<ul class="lang-menu">
+				<li>
+					<a href="{{ path(route, params|merge({"_locale" : "fr"})) }}">
+						<img class="flags" src="{{ asset("assets/flags/fr.png") }}" alt="fr">
+					</a>
+				</li>
+				<li>
+					<a href="{{ path(route, params|merge({"_locale" : "en"})) }}">
+						<img class="flags" src="{{ asset("assets/flags/en.png") }}" alt="en">
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </header>
+
