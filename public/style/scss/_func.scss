@@ -11,3 +11,15 @@
     padding: $padding;
 }
 
+// Base css rules for background images
+@mixin background-img($url, $bgSize:cover, $bgRepeat:no-repeat) {
+    background-image: url($url);
+    background-repeat: $bgRepeat;
+    background-size: $bgSize;
+}
+
+// Mixin that prepare the form to be used in a modal
+@mixin modalFormInput($width:50%, $display:block) {
+    display: $display;
+    width: $width;
+}

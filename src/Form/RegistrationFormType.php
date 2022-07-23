@@ -38,7 +38,7 @@ class RegistrationFormType extends AbstractType
                 "trim" => true,
                 "attr" => [
                     "placeholder" => "email@email.com",
-                    "class" => "sfFormInput"
+                    "class" => "registerFormInput modalFormInput"
                 ],
                 "constraints" => [
                     new Email([
@@ -64,7 +64,7 @@ class RegistrationFormType extends AbstractType
                 "trim" => true,
                 "attr" => [
                     "placeholder" => $this->translator->trans("Nom d'utilisateur"),
-                    "class" => "sfFormInput"
+                    "class" => "registerFormInput modalFormInput"
                 ],
                 "constraints" => [
                     new NotBlank([
@@ -89,13 +89,13 @@ class RegistrationFormType extends AbstractType
                 "first_options" => [
                     "label" => $this->translator->trans("Mot de passe"),
                     "attr" => [
-                        "class" => "sfFormInput"
+                        "class" => "registerFormInput modalFormInput"
                     ],
                 ],
                 "second_options" => [
                     "label" => $this->translator->trans("Confirmez le mot de passe"),
                     "attr" => [
-                        "class" => "sfFormInput"
+                        "class" => "registerFormInput modalFormInput"
                     ],
                 ],
                 "constraints" => [

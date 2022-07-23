@@ -8,47 +8,10 @@
         color: $primaryColor;
         @include marginPadding(0px, 25px);
         text-transform: uppercase;
-
-        &:nth-child(2n+1){
-            font-size: 2rem;
-        }
-        &:nth-child(3) {
-            font-size: 3rem;
-        }
+        font-size: 2rem;
     }
 
-    .langList{
-        text-align: center;
-
-        li {position: relative;}
-
-        img {
-            width: 30px;
-        }
-
-        ul {
-            @include marginPadding(0,0);
-
-            li {
-                background-color: rgba(0,0,0,.7);
-                height: 50px;
-                line-height: 50px;
-                border-bottom: 1px solid white;
-                
-                &:last-child {
-                    border-bottom: none;
-                }
-            }
-        }
-
-        .lang-menu {
-            display: none;
-            position: absolute;
-            width: 50px;
-        }
-
-        &:hover .lang-menu{
-            display: block;
-        }
+    .playLink {
+        font-size: 3rem;
     }
 }

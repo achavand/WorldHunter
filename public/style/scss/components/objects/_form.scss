@@ -1,0 +1,39 @@
+.registerFormInput {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: $formPadding;
+    margin-bottom: 10px;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.modalFormInput {
+    @include modalFormInput();
+}
+
+.rememberLog {
+    margin: 16px 0;
+    text-align: center;
+    font-size: 14px;
+
+    a {
+        text-decoration: none;
+        color: $darkSkyBlue;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-block {
+    .log-form {
+        width: 100%;
+    }
+    input, label {
+        width: 100%;
+    }
+}

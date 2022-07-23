@@ -7,38 +7,16 @@ ul {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 .background {
     width: 100%; height: 100%;
-    background-image: url("../../assets/backgrounds/main-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    @include background-img("../../assets/backgrounds/main-bg.jpg");
     background-position: center;
     background-attachment: fixed;
     background-color: #464646;
 }
 
-
-.form-block {
-    .log-form {
-        width: 100%;
-    }
-    input, label {
-        width: 100%;
-    }
-}
-
-.rememberLog {
-    margin: 16px 0;
-    text-align: center;
-    font-size: 14px;
-
-    a {
-        text-decoration: none;
-        color: $darkSkyBlue;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-}
 

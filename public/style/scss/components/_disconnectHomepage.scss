@@ -7,11 +7,9 @@
     .log {
         .log-form {
             color: $darkSkyBlue;
-            background-image: url("../../../assets/backgrounds/login-background.png");
-            background-repeat: no-repeat;
-            background-size: cover;
+            @include background-img("../../../assets/backgrounds/login-background.png");
             width: 300px;
-            padding-bottom: 10px;
+            padding-bottom: $formPadding;
 
             &:before {opacity: .5;}
 
@@ -22,18 +20,6 @@
 
             label {
                 font-size: 1.3rem;
-            }
-
-            input {
-                background: transparent;
-                border: navajowhite;
-                border-bottom: 1px solid black;
-                padding: 10px;
-                margin-bottom: 10px;
-
-                &:focus {
-                    outline: none;
-                }
             }
 
             .form-block {
@@ -50,21 +36,20 @@
     }
 }
 
-.sfFormInput {
-    background: transparent;
-    border: navajowhite;
-    border-bottom: 1px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: block;
-    width: 50%;
-}
-
 @media screen and (max-width: $dimension1000) {
 
     .disconnect-container {
         flex-direction: column-reverse;
         margin-top: 50px;
+
+        .log {
+            width: 100%;
+
+            .log-form {
+                width: 80%;
+                margin: auto;
+            }
+        }
     }
 
 }

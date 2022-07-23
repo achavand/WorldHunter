@@ -23,6 +23,7 @@ class DisconnectedHomeController extends AbstractController
         if($this->getUser() == null){
             return $this->redirectToRoute("disconnected_home");
         }
+
         $locale = new LocaleClass($request);
 
         return $this->redirectToRoute("disconnected_home", [
@@ -53,8 +54,6 @@ class DisconnectedHomeController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         
-        //dd($form->isSubmitted());
-        //dd($form->handleRequest($request));
         if($form->isSubmitted() && $form->isValid()) {
             dd("Local");
             $user->setRoles(["ROLE_USER"]);
@@ -70,7 +69,6 @@ class DisconnectedHomeController extends AbstractController
             );
         }     
 
-        // Un utilisateur non connecté arrive sur cette page
         return $this->render('disconnectedHome/index.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
