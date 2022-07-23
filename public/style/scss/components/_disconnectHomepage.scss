@@ -10,6 +10,7 @@
             @include background-img("../../../assets/backgrounds/login-background.png");
             width: 300px;
             padding-bottom: $formPadding;
+            border-radius: 7px;
 
             &:before {opacity: .5;}
 
@@ -32,6 +33,16 @@
                 display: block;
             }
 
+        }
+    }
+
+    .disconnected-presentation {
+        width: 25%;
+
+        p{
+            font-size: 1.3rem;
+            line-height: 1.7rem;
+            text-shadow: 7px 7px 7px black;
         }
     }
 }

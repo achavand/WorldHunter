@@ -92,7 +92,8 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     width: 300px;
-    padding-bottom: 10px; }
+    padding-bottom: 10px;
+    border-radius: 7px; }
     .disconnect-container .log .log-form:before {
       opacity: .5; }
     .disconnect-container .log .log-form h1 {
@@ -106,6 +107,12 @@ a {
     .disconnect-container .log .log-form .form_submit {
       margin: 0 auto;
       display: block; }
+  .disconnect-container .disconnected-presentation {
+    width: 25%; }
+    .disconnect-container .disconnected-presentation p {
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+      text-shadow: 7px 7px 7px black; }
 
 @media screen and (max-width: 1000px) {
   .disconnect-container {
