@@ -20,6 +20,9 @@ a {
   background-attachment: fixed;
   background-color: #464646; }
 
+.display-none {
+  display: none !important; }
+
 .logBtn {
   background-color: transparent;
   color: #03224c;
@@ -178,5 +181,78 @@ a {
   .modal:target {
     visibility: visible;
     opacity: 1; }
+
+.creationCharacter-container {
+  width: 100vw;
+  height: 100vh;
+  color: #f2dcaa; }
+  .creationCharacter-container h1 {
+    margin-top: 0;
+    margin-bottom: 65px;
+    padding-top: 25px;
+    text-align: center; }
+  .creationCharacter-container .create-block {
+    width: 90%;
+    margin: 0 auto;
+    display: flex; }
+    .creationCharacter-container .create-block .create-left {
+      width: 25%; }
+      .creationCharacter-container .create-block .create-left .charactersList {
+        display: flex;
+        justify-content: normal;
+        align-items: center;
+        flex-direction: column; }
+        .creationCharacter-container .create-block .create-left .charactersList .characterlist-border {
+          display: flex;
+          justify-content: normal;
+          align-items: center;
+          flex-direction: column;
+          border: 5px solid black;
+          border-image: linear-gradient(to right, #c33764, #1d2671);
+          border-image-slice: 1; }
+          .creationCharacter-container .create-block .create-left .charactersList .characterlist-border .characterList-img {
+            width: 200px;
+            height: 192px;
+            cursor: pointer;
+            border-bottom: 5px solid black;
+            border-image: linear-gradient(to right, #c33764, #1d2671);
+            border-image-slice: 1; }
+    .creationCharacter-container .create-block .create-right {
+      width: 75%; }
+      .creationCharacter-container .create-block .create-right .races-description {
+        border: 2px solid white;
+        border-radius: 1%;
+        width: 50%;
+        height: 50%;
+        overflow: overlay;
+        margin: auto;
+        padding: 25px; }
+      .creationCharacter-container .create-block .create-right .gender {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        padding: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        .creationCharacter-container .create-block .create-right .gender .gender-btn {
+          margin: 0 5%; }
+          .creationCharacter-container .create-block .create-right .gender .gender-btn .gender-img {
+            height: 100px; }
+      .creationCharacter-container .create-block .create-right .submit-block {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        padding: 25px; }
+        .creationCharacter-container .create-block .create-right .submit-block div {
+          width: max-content;
+          margin: 0 auto;
+          padding: 20px 50px;
+          background: linear-gradient(to right, #c33764, #1d2671);
+          cursor: pointer;
+          box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.7);
+          transition: box-shadow .3s; }
+          .creationCharacter-container .create-block .create-right .submit-block div:hover {
+            box-shadow: none; }
 
 /*# sourceMappingURL=style.css.map */

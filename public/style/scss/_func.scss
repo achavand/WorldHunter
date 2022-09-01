@@ -23,3 +23,10 @@
     display: $display;
     width: $width;
 }
+
+// gradient border
+@mixin gradientBorder($border, $borderImg, $border-slice : 1) {
+    border: $border;
+    border-image: linear-gradient($borderImg);
+    border-image-slice: $border-slice;
+}

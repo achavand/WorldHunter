@@ -10,9 +10,6 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
     <body>
         {% from "macros/modal.html.twig" import modalBuilder %}
@@ -27,5 +24,6 @@
         {% set contentModal = form(registrationForm) ~ "<div class='rememberLog'><a href="~ path("disconnected_home") ~">" ~ "Déjà un compte ?"|trans ~ "</a></div>" %}  
         {{ modalBuilder(idModal, titleModal, contentModal) }}
 
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

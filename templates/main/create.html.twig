@@ -1,5 +1,73 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Page de création de personnage</h1>
+    <div class="background">
+        <div class="creationCharacter-container">
+            <h1>Créer un personnage</h1>
+
+            <div class="create-block" id="block-races">
+                <div class="create-left">
+                    <div class="charactersList">
+                        <div class="characterlist-border">
+                        {% for race in races %}
+                            <img class="characterList-img" src="{{ asset(race.getUrlImageMale()) }}" alt="{{ race.nameMale }}">
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="create-right">
+                    <div class="races-description">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quasi laborum beatae dolorum quod quibusdam pariatur qui esse vero, explicabo doloremque, non dicta, numquam dignissimos atque deserunt cumque corrupti natus?
+                    </div>
+
+                    <div class="gender">
+                        <div class="gender-btn">
+                            <img class="gender-img" id='genderMale' src="{{ asset("assets/images/gender-icons/gender-male.png") }}" alt="gender male">
+                        </div>
+                        <div class="gender-btn">
+                            <img class="gender-img" id='genderFemale' src="{{ asset("assets/images/gender-icons/gender-female.png") }}" alt="gender female">
+                        </div>
+                    </div>
+
+                    <div class="submit-block">
+                        <div id="next">Suivant</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="create-block display-none" id="block-stats">
+                <h2>Stat bloc (ou bloc 2 comme tu veux)</h2>
+                <div class="create-left">
+                    <div class="charactersList">
+                        <div class="characterlist-border">
+                            Menu stats
+                        </div>
+                    </div>
+                </div>
+
+                <div class="create-right">
+                    <div class="races-description">
+                        Menu description
+                    </div>
+
+                    <div class="gender">
+                        menu nom
+                    </div>
+
+                    <div class="submit-block">
+                        <div id="previous">Précédant</div>
+                        <div id="validate">Valider</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>    
 {% endblock body %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/characterCreation.js") }}" defer></script>
+{% endblock %}

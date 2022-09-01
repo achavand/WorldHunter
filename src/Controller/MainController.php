@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Personnage;
+use App\Entity\Races;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,6 +63,8 @@ class MainController extends AbstractController
         $personnage = new Personnage();
         $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
 
+        $races = $this->doctrine->getRepository(Races::class)->findAll();
+
         if(count($personnageList) > 0){
             // On renvoie vers une page temporaire pour le moment, qui servira de page de jeu plus tard
             // Il faudra traiter differents cas tel que le choix du personnage par exemple (on complètera plus tard)
@@ -71,6 +74,8 @@ class MainController extends AbstractController
             return $this->redirectToRoute('neSertARien');
         }
 
-        return $this->render('main/create.html.twig');
+        return $this->render('main/create.html.twig', [
+            "races" => $races
+        ]);
     }
 }

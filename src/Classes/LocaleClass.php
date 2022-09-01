@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LocaleClass
 {
-
     private Request $request;
+    
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -22,5 +22,4 @@ class LocaleClass
     {
         return $this->request->attributes->get("_route_params");
     }
-
 }

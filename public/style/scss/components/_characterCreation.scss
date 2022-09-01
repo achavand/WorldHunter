@@ -1,0 +1,96 @@
+.creationCharacter-container {
+    width: 100vw;
+    height: 100vh;
+    color: $primaryColor;
+
+    h1{
+        margin-top: 0;
+        margin-bottom: 65px;
+        padding-top: 25px;
+        text-align: center;
+    }
+
+    .create-block {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+
+        .create-left {
+            width: 25%;
+
+            .charactersList{
+                @include flex(normal, center);
+                flex-direction: column;
+
+                .characterlist-border {
+                    display: flex;
+                    justify-content: normal;
+                    align-items: center;
+                    flex-direction: column;
+                    @include gradientBorder(5px solid black, $borderGradient);                    
+
+                    .characterList-img {
+                        width: 200px;
+                        height: 192px;
+                        cursor: pointer;
+                        border-bottom: 5px solid black;
+                        border-image: linear-gradient($borderGradient);
+                        border-image-slice: 1;
+                    };
+                }
+                
+            }
+        }
+
+        .create-right {
+            width: 75%;
+
+            .races-description {
+                border: 2px solid white;
+                border-radius: 1%;
+                width: 50%;
+                height: 50%;
+                overflow: overlay;
+                margin: auto;
+                padding: 25px;
+            }
+
+            .gender {
+                width: 50%;
+                margin: auto;
+                text-align: center;
+                padding: 25px;
+                @include flex(center, center);
+
+                .gender-btn {
+                    margin: 0 5%;
+
+                    .gender-img{
+                        height: 100px;
+                    }
+                }
+            }
+            
+            .submit-block {
+                width: 50%;
+                margin: auto;
+                text-align: center;
+                padding: 25px;
+
+                div {
+                    width: max-content;
+                    margin: 0 auto;
+                    padding: 20px 50px;
+                    background: linear-gradient(to right, #c33764, #1d2671);
+                    cursor: pointer;
+                    box-shadow: 3px 3px 3px rgba(0, 0, 0, 70%);
+                    transition: box-shadow .3s;
+
+                    &:hover {
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}
