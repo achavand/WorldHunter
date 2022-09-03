@@ -1,13 +1,15 @@
 // Lister les variables et les récupérer
 const races = document.querySelector("#block-races");
-const stat = document.querySelector("#block-stats");
+const stat  = document.querySelector("#block-stats");
 
-const next = document.querySelector("#next") ;
+const next     = document.querySelector("#next") ;
 const previous = document.querySelector("#previous") ;
 const validate = document.querySelector("#validate") ;
 
-const genderMale = document.querySelector("#genderMale");
-const genderFemale = document.querySelector("#genderFemale");
+const characterMale   = document.querySelector("#characterMale");
+const characterFemale = document.querySelector("#characterFemale");
+const genderMale      = document.querySelector("#genderMale");
+const genderFemale    = document.querySelector("#genderFemale");
 
 const racesDescription = document.querySelector(".races-description");
 // const statExplanations = ;
@@ -16,21 +18,13 @@ const racesDescription = document.querySelector(".races-description");
 let personnagesList = document.querySelectorAll(".characterList-img");
 
 
-
-function creationButtonDisplayer(elToDisplay, elTohide){
-    if(elToDisplay.classList.contains("display-none")){
-        elTohide.classList.add("display-none");
-        elToDisplay.classList.remove("display-none")
-    }
-}
-
-
+// Actions for the navigations button
 next.addEventListener("click", () => {
-    creationButtonDisplayer(stat, races);
+    Toolbox.switchClassBetween2Elements(races,stat, "display-none");
 });
 
 previous.addEventListener("click", () => {
-    creationButtonDisplayer(races, stat);
+    Toolbox.switchClassBetween2Elements(stat, races, "display-none");
 });
 
 
@@ -39,18 +33,36 @@ validate.addEventListener("click", () => {
 });
 
 
+// Actions pour the switch between genders
+genderMale.addEventListener("click", () => {
+    Toolbox.switchClassBetween2Elements(genderMale, genderFemale, "genderSelected");
+    CharacterCreation.currentCharacterSelected("-");
+    Toolbox.switchClassBetween2Elements(characterFemale, characterMale, "display-none");
+})
+
+genderFemale.addEventListener("click", () => {
+    Toolbox.switchClassBetween2Elements(genderFemale, genderMale, "genderSelected");
+    CharacterCreation.currentCharacterSelected("+");
+    Toolbox.switchClassBetween2Elements(characterMale, characterFemale, "display-none");
+})
+
+personnagesList[0].classList.add("brightness");
+personnagesList.forEach( personnage => {
+    personnage.addEventListener("click", () => {
+        personnagesList.forEach(item => {
+            if(item.classList.contains("brightness")){
+                item.classList.remove("brightness");
+            }
+        })
+        personnage.classList.add("brightness");
+    })
+})
 
 
-// Lors du choix du genre, la photo et le texte sont modifiés selon le genre selectionné
-
-    // Styliser les icones de genre & donner un style à celui sélectionner
-        // Lorsque l'on clique sur un genre non sélectionné, on transmet le style de selection à ce nouveau genre
-    
-    // Le code de la liste des personnages s'adapte selon le genre sélectionner ->
-        // L'avatar change : H -> avatar male / F -> avatar female
-    
-    // Le code du nom de la race s'adapte selon le genre sélectionné
-        // Male -> nom race mal / female -> nom race female
+// Lors du choix du genre, la photo et le texte sont modifiés selon le genre selectionné    
+    // Le code du nom de la race s'adapte selon le genre sélectionné 
+        // Au passage, ajouter un visuel sur la race sélectionner
+        // Male -> nom race male / female -> nom race female
 
 
 

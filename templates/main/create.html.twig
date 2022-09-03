@@ -8,9 +8,14 @@
             <div class="create-block" id="block-races">
                 <div class="create-left">
                     <div class="charactersList">
-                        <div class="characterlist-border">
+                        <div class="characterlist-border" id="characterMale">
                         {% for race in races %}
                             <img class="characterList-img" src="{{ asset(race.getUrlImageMale()) }}" alt="{{ race.nameMale }}">
+                        {% endfor %}
+                        </div>
+                        <div class="characterlist-border display-none" id="characterFemale">
+                        {% for race in races %}
+                            <img class="characterList-img" src="{{ asset(race.getUrlImageFemale()) }}" alt="{{ race.nameFemale }}">
                         {% endfor %}
                         </div>
                     </div>
@@ -18,15 +23,18 @@
 
                 <div class="create-right">
                     <div class="races-description">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quasi laborum beatae dolorum quod quibusdam pariatur qui esse vero, explicabo doloremque, non dicta, numquam dignissimos atque deserunt cumque corrupti natus?
+                        <h2>Nom de la race</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi perferendis nemo nostrum voluptate dolore molestiae nulla, et tempore vel, unde ipsam, ratione laboriosam ut dignissimos deleniti corrupti recusandae nobis maiores! Earum laborum quis illum necessitatibus nobis explicabo laboriosam animi alias voluptatibus tenetur, quos odit dolorem ullam, assumenda veritatis labore quia! Eligendi commodi dolores saepe dolore reiciendis officia? Optio quod assumenda impedit veritatis, quasi corrupti cupiditate facere, tempora sint exercitationem dolorem voluptate reiciendis rerum nihil earum. Atque deserunt labore soluta dicta officia dolorum eveniet vel recusandae! Sint voluptate error aliquid deserunt nemo, laborum, libero distinctio culpa quas eius quis eligendi nostrum?
+                        </p>
                     </div>
 
                     <div class="gender">
-                        <div class="gender-btn">
-                            <img class="gender-img" id='genderMale' src="{{ asset("assets/images/gender-icons/gender-male.png") }}" alt="gender male">
+                        <div class="gender-btn genderSelected" id='genderMale'>
+                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-male.png") }}" alt="gender male">
                         </div>
-                        <div class="gender-btn">
-                            <img class="gender-img" id='genderFemale' src="{{ asset("assets/images/gender-icons/gender-female.png") }}" alt="gender female">
+                        <div class="gender-btn" id='genderFemale'>
+                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-female.png") }}" alt="gender female">
                         </div>
                     </div>
 
@@ -69,5 +77,6 @@
 {% endblock body %}
 
 {% block javascripts %}
+    <script src="{{ asset("js/Classes/Toolbox.js") }}" defer></script>
     <script src="{{ asset("js/characterCreation.js") }}" defer></script>
 {% endblock %}
