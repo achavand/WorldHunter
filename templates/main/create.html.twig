@@ -5,17 +5,26 @@
         <div class="creationCharacter-container">
             <h1>Créer un personnage</h1>
 
+            {{form_start(characterForm)}}
             <div class="create-block" id="block-races">
                 <div class="create-left">
                     <div class="charactersList">
                         <div class="characterlist-border" id="characterMale">
                         {% for race in races %}
-                            <img class="characterList-img" src="{{ asset(race.getUrlImageMale()) }}" alt="{{ race.nameMale }}">
+                            {% if params["_locale"] == "fr" %}
+                            <img class="characterList-img" id="charMale" src="{{ asset(race.getUrlImageMale()) }}" alt="{{ race.nameMale }}" data-id="{{ race.id }}">
+                            {% else %}
+                            <img class="characterList-img" id="charMale" src="{{ asset(race.getUrlImageMale()) }}" alt="{{ race.nameMaleEn }}" data-id="{{ race.id }}">
+                            {% endif %}
                         {% endfor %}
                         </div>
                         <div class="characterlist-border display-none" id="characterFemale">
                         {% for race in races %}
-                            <img class="characterList-img" src="{{ asset(race.getUrlImageFemale()) }}" alt="{{ race.nameFemale }}">
+                            {% if params["_locale"] == "fr" %}
+                            <img class="characterList-img" id="charFemale" src="{{ asset(race.getUrlImageFemale()) }}" alt="{{ race.nameFemale }}" data-id="{{ race.id }}">
+                            {% else %}
+                            <img class="characterList-img" id="charFemale" src="{{ asset(race.getUrlImageFemale()) }}" alt="{{ race.nameFemaleEn }}" data-id="{{ race.id }}">
+                            {% endif %}
                         {% endfor %}
                         </div>
                     </div>
@@ -23,60 +32,78 @@
 
                 <div class="create-right">
                     <div class="races-description">
-                        <h2>Nom de la race</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi perferendis nemo nostrum voluptate dolore molestiae nulla, et tempore vel, unde ipsam, ratione laboriosam ut dignissimos deleniti corrupti recusandae nobis maiores! Earum laborum quis illum necessitatibus nobis explicabo laboriosam animi alias voluptatibus tenetur, quos odit dolorem ullam, assumenda veritatis labore quia! Eligendi commodi dolores saepe dolore reiciendis officia? Optio quod assumenda impedit veritatis, quasi corrupti cupiditate facere, tempora sint exercitationem dolorem voluptate reiciendis rerum nihil earum. Atque deserunt labore soluta dicta officia dolorum eveniet vel recusandae! Sint voluptate error aliquid deserunt nemo, laborum, libero distinctio culpa quas eius quis eligendi nostrum?
-                        </p>
+                        <span>{% trans %}<h2 id="races-description-title"></h2>{% endtrans %}</span>
+                        {% include "parts/racesDescription.html.twig" %}
                     </div>
 
                     <div class="gender">
                         <div class="gender-btn genderSelected" id='genderMale'>
-                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-male.png") }}" alt="gender male">
+                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-male.png") }}" alt="gender male" data-gender="male">
                         </div>
                         <div class="gender-btn" id='genderFemale'>
-                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-female.png") }}" alt="gender female">
+                            <img class="gender-img" src="{{ asset("assets/images/gender-icons/gender-female.png") }}" alt="gender female" data-gender="female">
                         </div>
                     </div>
 
                     <div class="submit-block">
-                        <div id="next">Suivant</div>
+                        <div id="btn-creationCharacter-nav" data-navType="next">Suivant</div>
                     </div>
                 </div>
             </div>
 
 
             <div class="create-block display-none" id="block-stats">
-                <h2>Stat bloc (ou bloc 2 comme tu veux)</h2>
                 <div class="create-left">
-                    <div class="charactersList">
-                        <div class="characterlist-border">
-                            Menu stats
+                    <div class="characterStats">
+                        <div class="borderStat">
+                            <h2>Statistiques</h2>
+                            <table>
+                                <tbody>
+                                {% for stat in stats %}
+                                    <tr>
+                                        <td class="tableStat-name">{{ stat[0] }}</td>
+                                        <td class="tableStat-manager">
+                                            <span id="statDecrease" data-stat="{{ stat[1] }}">-</span>
+                                            <span id="statCurrent" data-stat="{{ stat[1] }}">10</span>
+                                            <span id="statIncrease" data-stat="{{ stat[1] }}">+</span>
+                                        </td>
+                                    </tr>                                
+                                {% endfor %}
+                                </tbody>
+                                <tr class="remainingPoints">
+                                    <td colspan="2">Points restant : <span id="points">{{ statPoints }}</span></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
                 <div class="create-right">
                     <div class="races-description">
-                        Menu description
+                        A venir
                     </div>
 
-                    <div class="gender">
-                        menu nom
+                    <div class="character-name">
+                        <label>Nom</label>
+                        {{ form_widget(characterForm.name) }}
+                        {# <input type="text" id="charName" value=""> #}
                     </div>
 
                     <div class="submit-block">
-                        <div id="previous">Précédant</div>
-                        <div id="validate">Valider</div>
+                        <div id="btn-creationCharacter-nav" data-navType="previous">Précédant</div>
+                        {{ form_widget(characterForm.submit) }}
                     </div>
                 </div>
             </div>
-
+            {{ form_end(characterForm) }}
 
         </div>
     </div>    
 {% endblock body %}
 
 {% block javascripts %}
-    <script src="{{ asset("js/Classes/Toolbox.js") }}" defer></script>
-    <script src="{{ asset("js/characterCreation.js") }}" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ asset("js/Classes/Toolbox.js") }}"></script>
+    <script src="{{ asset("js/Classes/CharacterCreationClasse.js") }}"></script>
+    <script src="{{ asset("js/characterCreation.js") }}"></script>
 {% endblock %}

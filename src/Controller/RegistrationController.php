@@ -25,7 +25,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            dd("Register controller");
             $user->setRoles(["ROLE_USER"]);
             $user->setRegisterDate(new \DateTime());
             $user->setPassword($userPasswordHasher->hashPassword( $user, $form->get('password')->getData()));   

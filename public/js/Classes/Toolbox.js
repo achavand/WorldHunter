@@ -4,5 +4,13 @@ let Toolbox = {
             addClassTo.classList.add(cssClass);
             removeClassTo.classList.remove(cssClass)
         }
+    },
+
+    removeClassOnArray:function(arrayToCheck, classToRemove){
+        arrayToCheck.forEach(item => {
+            if(item.classList.contains(classToRemove)){
+                item.classList.remove(classToRemove);
+            }
+        })
     }
 }

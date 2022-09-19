@@ -1,0 +1,28 @@
+{% if params["_locale"] == "fr" %}
+    <p class="races-description-text display-none" id="races-description-0" data-textId="0">
+        {{ races[0].description }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-1" data-textId="1">
+        {{ races[1].description }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-2" data-textId="2">
+        {{ races[2].description }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-3" data-textId="3">
+        {{ races[3].description }}
+    </p>
+    
+{% else %}
+    <p class="races-description-text display-none" id="races-description-0" data-textId="0">
+        {{ races[0].descriptionEn }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-1" data-textId="1">
+        {{ races[1].descriptionEn }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-2" data-textId="2">
+        {{ races[2].descriptionEn }}
+    </p>
+    <p class="races-description-text display-none" id="races-description-3" data-textId="3">
+        {{ races[3].descriptionEn }}
+    </p>
+{% endif %}

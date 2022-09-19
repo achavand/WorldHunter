@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Classes\LocaleClass;
 use App\Entity\Personnage;
 use App\Entity\Races;
+use App\Entity\RacialAdvantage;
+use App\Form\CreateCharacterType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -50,21 +55,31 @@ class MainController extends AbstractController
         ]);
     }
 
-    // Pour tester en attendant
-    #[Route('/{_locale}/useless', name: 'neSertARien')]
-    public function neSertARien(): Response
-    {
-        return $this->render('main/index.html.twig');
-    }
-
     #[Route('/{_locale}/character-creation', name: 'characterCreation')]
-    public function characterCreation(): Response
+    public function characterCreation(Request $request): Response
     {
+        $locale = new LocaleClass($request);
         $personnage = new Personnage();
+        $createCharacterForm = $this->createForm(CreateCharacterType::class, $personnage);
+
+        $createCharacterForm->handleRequest($request);
+        if($createCharacterForm->isSubmitted() && $createCharacterForm->isValid()){
+            dd($request);
+        }
+
         $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
-
         $races = $this->doctrine->getRepository(Races::class)->findAll();
+        $racialAdvantage = $this->doctrine->getRepository(RacialAdvantage::class)->findAll();
+        $stats = [
+            "vitality" => ["Vitalité", "vitality"],
+            "phyAtk"   => ["Attaque physique", "physical-atk"], 
+            "phyDef"   => ["Défense physique", "physical-def"], 
+            "magicAtk" => ["Attaque magique", "magical-atk"], 
+            "macifDef" => ["Défense magique", "magical-def"], 
+            "agility"  => ["Agilité", "agility"]
+        ];
 
+        
         if(count($personnageList) > 0){
             // On renvoie vers une page temporaire pour le moment, qui servira de page de jeu plus tard
             // Il faudra traiter differents cas tel que le choix du personnage par exemple (on complètera plus tard)
@@ -74,8 +89,29 @@ class MainController extends AbstractController
             return $this->redirectToRoute('neSertARien');
         }
 
+        //dd($racialAdvantage);
         return $this->render('main/create.html.twig', [
-            "races" => $races
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams(),
+            "races" => $races,
+            "advantages" => $racialAdvantage,
+            "stats" => $stats,
+            "characterForm" => $createCharacterForm->createView(),
+            "statPoints" => 10
         ]);
     }
+
+        // Pour tester en attendant
+        #[Route('/character/create', name: 'createCharacter')]
+        public function createCharacter(Request $request): Response
+        {
+            dd($request);
+            if($request->request->get('json')){
+                //make something curious, get some unbelieveable data
+                dd("Va te suicider");
+                $arrData = ['output' => 'here the result which will appear in div'];
+                return new JsonResponse($arrData);
+            }
+            return $this->render('main/index.html.twig');
+        }
 }

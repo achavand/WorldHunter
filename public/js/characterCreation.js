@@ -1,84 +1,119 @@
-// Lister les variables et les récupérer
+//Block
 const races = document.querySelector("#block-races");
 const stat  = document.querySelector("#block-stats");
 
-const next     = document.querySelector("#next") ;
-const previous = document.querySelector("#previous") ;
-const validate = document.querySelector("#validate") ;
+//Inputs
+const raceInput   = document.querySelector("#create_character_race");
+const genderInput = document.querySelector("#create_character_gender");
+const nameInput   = document.querySelector("#create_character_name");
+const validate    = document.querySelector("#create_character_submit");
 
-const characterMale   = document.querySelector("#characterMale");
-const characterFemale = document.querySelector("#characterFemale");
-const genderMale      = document.querySelector("#genderMale");
-const genderFemale    = document.querySelector("#genderFemale");
-
-const racesDescription = document.querySelector(".races-description");
-// const statExplanations = ;
-
-// let statList = ;
-let personnagesList = document.querySelectorAll(".characterList-img");
-
-
-// Actions for the navigations button
-next.addEventListener("click", () => {
-    Toolbox.switchClassBetween2Elements(races,stat, "display-none");
-});
-
-previous.addEventListener("click", () => {
-    Toolbox.switchClassBetween2Elements(stat, races, "display-none");
-});
+//List
+const personnagesList = document.querySelectorAll(".characterList-img");
+const characterList   = document.querySelectorAll(".characterlist-border")
+const genderList      = document.querySelectorAll(".gender-btn");
+const charMale        = document.querySelectorAll("#charMale");
+const charFemale      = document.querySelectorAll("#charFemale");
+const btnNav          = document.querySelectorAll("#btn-creationCharacter-nav");
+const inputStat       = document.querySelectorAll(".create-stat-input");
+const currentStat     = document.querySelectorAll("#statCurrent")
+const statDecrease    = document.querySelectorAll("#statDecrease");
+const statIncrease    = document.querySelectorAll("#statIncrease");
 
 
-validate.addEventListener("click", () => {
-    alert("validate");
-});
+// elements
+const racesDescriptionTitle = document.querySelector("#races-description-title");
+const racesDescriptionText  = document.querySelectorAll(".races-description-text");
+let points         = document.querySelector("#points");
 
+let canValidate = false;
 
-// Actions pour the switch between genders
-genderMale.addEventListener("click", () => {
-    Toolbox.switchClassBetween2Elements(genderMale, genderFemale, "genderSelected");
-    CharacterCreation.currentCharacterSelected("-");
-    Toolbox.switchClassBetween2Elements(characterFemale, characterMale, "display-none");
-})
-
-genderFemale.addEventListener("click", () => {
-    Toolbox.switchClassBetween2Elements(genderFemale, genderMale, "genderSelected");
-    CharacterCreation.currentCharacterSelected("+");
-    Toolbox.switchClassBetween2Elements(characterMale, characterFemale, "display-none");
-})
 
 personnagesList[0].classList.add("brightness");
-personnagesList.forEach( personnage => {
-    personnage.addEventListener("click", () => {
-        personnagesList.forEach(item => {
-            if(item.classList.contains("brightness")){
-                item.classList.remove("brightness");
-            }
-        })
-        personnage.classList.add("brightness");
+raceInput.value =  personnagesList[0].dataset.id;
+genderInput.value = genderList[0].children[0].dataset.gender;
+
+function genderManager(characterListId){
+    Toolbox.removeClassOnArray(characterList, "display-none");
+    characterList[characterListId].classList.add("display-none");
+
+    Toolbox.removeClassOnArray(charMale, "brightness");
+    Toolbox.removeClassOnArray(charFemale, "brightness");
+}
+
+btnNav.forEach(btn => {
+    btn.addEventListener("click", () => {
+        if(btn.dataset.navtype == 'next'){
+            Toolbox.switchClassBetween2Elements(races, stat, "display-none");
+        } else{
+            Toolbox.switchClassBetween2Elements(stat, races, "display-none");
+        }
     })
 })
 
+personnagesList.forEach( personnage => {
+    personnage.addEventListener("click", () => {
+        Toolbox.removeClassOnArray(personnagesList, "brightness")
+        personnage.classList.add("brightness");
+        raceInput.value = personnage.dataset.id;
 
-// Lors du choix du genre, la photo et le texte sont modifiés selon le genre selectionné    
-    // Le code du nom de la race s'adapte selon le genre sélectionné 
-        // Au passage, ajouter un visuel sur la race sélectionner
-        // Male -> nom race male / female -> nom race female
+        racesDescriptionTitle.textContent = CharacterCreation.defineRaceTitle(personnagesList);
+        racesDescriptionText.textContent  = CharacterCreation.defineRaceDescription(personnagesList, racesDescriptionText);
+    })
+})
 
+genderList.forEach(gender => {
+    gender.addEventListener("click", () => {
+        let personnageId = CharacterCreation.characterId(personnagesList);
+        Toolbox.removeClassOnArray(genderList, "genderSelected");
+        gender.classList.add("genderSelected");
+        genderInput.value = gender.children[0].dataset.gender; 
 
+        if(gender.id == "genderMale"){
+            genderManager(1);
+            CharacterCreation.genderAddClassByPersonnageId(charMale, personnageId);
+        } else if (gender.id == "genderFemale"){
+            genderManager(0);
+            CharacterCreation.genderAddClassByPersonnageId(charFemale, personnageId);
+        }
 
-// Sur la page 1 - le choix de la classe est animé
+        racesDescriptionTitle.textContent = CharacterCreation.defineRaceTitle(personnagesList);
+    })
+})
 
-// Sur la page 1 - le choix du genre est animé
+statDecrease.forEach(stat => {
+    stat.addEventListener("click", () => {
+        let eventAssociatedStat = stat.dataset.stat
+        let currentStatValue;
+        CharacterCreation.statUpdate(stat.dataset.stat, points, "decrease", currentStat);
+        
+        CharacterCreation.inputUpdate(currentStat, eventAssociatedStat, currentStatValue, inputStat);
+    })
+})
 
-// Ajouter le talent racial dans le template
-// !!!!! et l'animer !!!!
+statIncrease.forEach(stat => {
+    stat.addEventListener("click", () => {
+        let eventAssociatedStat = stat.dataset.stat
+        let currentStatValue;
+        CharacterCreation.statUpdate(stat.dataset.stat, points, "increase", currentStat);
 
-// Ajouter un peu d'animation avec le bouton suivant et précédants (sûrement du CSS et non du JS)
+        CharacterCreation.inputUpdate(currentStat, eventAssociatedStat, currentStatValue, inputStat);        
+    })
+})
 
-// Sur la page 2 - Animé le menu des statistiques
+setInterval(() => {
+    canValidate = CharacterCreation.canValidate(personnagesList, genderList, nameInput);
 
-// Détecter le clique sur "valider", mais ne rien faire pour le moment
+    if(!canValidate){
+        if(!validate.classList.contains("hiddenValidate")){
+            validate.classList.add("hiddenValidate");
+        }
+        return;
+    } else {
+        validate.classList.remove("hiddenValidate");
+    }
+}, 1000);
 
-// Verifier en continue les informations rentrer par l'utilisateur
-
-// Stocker les informations dans un tableau
+racesDescriptionTitle.textContent = CharacterCreation.defineRaceTitle(personnagesList);
+racesDescriptionText.textContent  = CharacterCreation.defineRaceDescription(personnagesList, racesDescriptionText);
+CharacterCreation.defineDefaultInputStatValue(inputStat);

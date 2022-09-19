@@ -22,12 +22,12 @@ class Races
     private $url_image_female;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name_male;
+    private $name_male_fr;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name_female;
+    private $name_female_fr;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private $description;
 
     #[ORM\Column(type: 'array')]
@@ -35,6 +35,15 @@ class Races
 
     #[ORM\OneToMany(mappedBy: 'Races', targetEntity: RacialAdvantage::class)]
     private $racialAdvantages;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name_male_en;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name_female_en;
+
+    #[ORM\Column(type: 'text')]
+    private $description_en;
 
     public function __construct()
     {
@@ -72,24 +81,24 @@ class Races
 
     public function getNameMale(): ?string
     {
-        return $this->name_male;
+        return $this->name_male_fr;
     }
 
-    public function setNameMale(string $name_male): self
+    public function setNameMale(string $name_male_fr): self
     {
-        $this->name_male = $name_male;
+        $this->name_male_fr = $name_male_fr;
 
         return $this;
     }
 
     public function getNameFemale(): ?string
     {
-        return $this->name_female;
+        return $this->name_female_fr;
     }
 
-    public function setNameFemale(string $name_female): self
+    public function setNameFemale(string $name_female_fr): self
     {
-        $this->name_female = $name_female;
+        $this->name_female_fr = $name_female_fr;
 
         return $this;
     }
@@ -136,6 +145,42 @@ class Races
                 $racialAdvantage->setRaces(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNameMaleEn(): ?string
+    {
+        return $this->name_male_en;
+    }
+
+    public function setNameMaleEn(string $name_male_en): self
+    {
+        $this->name_male_en = $name_male_en;
+
+        return $this;
+    }
+
+    public function getNameFemaleEn(): ?string
+    {
+        return $this->name_female_en;
+    }
+
+    public function setNameFemaleEn(string $name_female_en): self
+    {
+        $this->name_female_en = $name_female_en;
+
+        return $this;
+    }
+
+    public function getDescriptionEn(): ?string
+    {
+        return $this->description_en;
+    }
+
+    public function setDescriptionEn(string $description_en): self
+    {
+        $this->description_en = $description_en;
 
         return $this;
     }
