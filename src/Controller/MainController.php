@@ -89,7 +89,6 @@ class MainController extends AbstractController
             return $this->redirectToRoute('neSertARien');
         }
 
-        //dd($racialAdvantage);
         return $this->render('main/create.html.twig', [
             "route" => $locale->setRoute(),
             "params" => $locale->setRouteParams(),
@@ -100,18 +99,4 @@ class MainController extends AbstractController
             "statPoints" => 10
         ]);
     }
-
-        // Pour tester en attendant
-        #[Route('/character/create', name: 'createCharacter')]
-        public function createCharacter(Request $request): Response
-        {
-            dd($request);
-            if($request->request->get('json')){
-                //make something curious, get some unbelieveable data
-                dd("Va te suicider");
-                $arrData = ['output' => 'here the result which will appear in div'];
-                return new JsonResponse($arrData);
-            }
-            return $this->render('main/index.html.twig');
-        }
 }

@@ -86,7 +86,6 @@
                     <div class="character-name">
                         <label>Nom</label>
                         {{ form_widget(characterForm.name) }}
-                        {# <input type="text" id="charName" value=""> #}
                     </div>
 
                     <div class="submit-block">
@@ -102,7 +101,6 @@
 {% endblock body %}
 
 {% block javascripts %}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{ asset("js/Classes/Toolbox.js") }}"></script>
     <script src="{{ asset("js/Classes/CharacterCreationClasse.js") }}"></script>
     <script src="{{ asset("js/characterCreation.js") }}"></script>

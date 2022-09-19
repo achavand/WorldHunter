@@ -170,13 +170,6 @@ let CharacterCreation = {
         let currentStats    = this.isCurrentStatValid();
         let name            = this.isNameValid(nameInput);
 
-        // Si tout est à "true", enlever la classe qui masque le bouton de validation / Sinon verifier qu'il est là (afficher si besoin)
-        // if(brightness && gender && remainsPoints && currentStats && name){
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-
         return brightness && gender && remainsPoints && currentStats && name ? true : false;
     },
 }
