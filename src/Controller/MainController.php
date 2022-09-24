@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\CharacterCreationCheckClass;
 use App\Classes\LocaleClass;
 use App\Entity\Personnage;
 use App\Entity\Races;
@@ -56,7 +57,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/{_locale}/character-creation', name: 'characterCreation')]
-    public function characterCreation(Request $request): Response
+    public function characterCreation(Request $request, CharacterCreationCheckClass $charCreation): Response
     {
         $locale = new LocaleClass($request);
         $personnage = new Personnage();
@@ -64,7 +65,10 @@ class MainController extends AbstractController
 
         $createCharacterForm->handleRequest($request);
         if($createCharacterForm->isSubmitted() && $createCharacterForm->isValid()){
-            dd($request);
+            $data = $request->get("create_character");
+            $formValid = $charCreation->checkData($data);
+            var_dump("Form is valid");
+            dd($formValid);
         }
 
         $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
