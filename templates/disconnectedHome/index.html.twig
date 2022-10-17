@@ -3,6 +3,7 @@
 {% block title %}{% trans %}Accueil{% endtrans %}{% endblock %}
 
 {% block body %}
+    {% from "macros/modal.html.twig" import modalBuilder %}
     <div class="disconnect-container">
         <div class="log">
             {% include "parts/login.html.twig" %}
@@ -21,6 +22,11 @@
                     
             </p>
         </div>
+
+        {# {% set idModal = "Inscription"|trans  %}
+        {% set titleModal = "Inscription"|trans  %}
+        {% set contentModal = form(registrationForm) ~ "<div class='rememberLog'><a href="~ path("disconnected_home") ~">" ~ "Déjà un compte ?"|trans ~ "</a></div>" %}  
+        {{ modalBuilder(idModal, titleModal, contentModal) }} #}
 
 
     </div>

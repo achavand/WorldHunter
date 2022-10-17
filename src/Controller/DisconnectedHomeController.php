@@ -54,14 +54,14 @@ class DisconnectedHomeController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
         
-        //dd($request);
         if($form->isSubmitted() && $form->isValid()) {
             $user->setRoles(["ROLE_USER"]);
             $user->setRegisterDate(new \DateTime());
             $user->setPassword($userPasswordHasher->hashPassword( $user, $form->get('password')->getData()));   
             $entityManager->persist($user);
             $entityManager->flush();
-
+            dd("test");
+            
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,

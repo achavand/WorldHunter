@@ -41,6 +41,9 @@ a {
   .logBtn:hover {
     box-shadow: none; }
 
+.logBtn-mt {
+  margin-top: 10px; }
+
 .registerFormInput {
   background: transparent;
   border: none;

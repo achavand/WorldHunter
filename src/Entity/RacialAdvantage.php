@@ -25,7 +25,7 @@ class RacialAdvantage
     #[ORM\JoinColumn(nullable: false)]
     private $Races;
 
-    #[ORM\OneToMany(mappedBy: 'racial_advantage', targetEntity: UserRace::class)]
+    #[ORM\OneToMany(mappedBy: 'racialAdvantage', targetEntity: UserRace::class)]
     private $userRaces;
 
     public function __construct()
@@ -103,4 +103,5 @@ class RacialAdvantage
 
         return $this;
     }
+
 }

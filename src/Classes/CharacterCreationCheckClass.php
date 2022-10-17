@@ -27,7 +27,7 @@ class CharacterCreationCheckClass
         $this->racesRepo     = $racesRepo;
     }
 
-    public function checkUnicName():bool
+    private function checkUnicName():bool
     {
         $nameExist = $this->characterRepo->findOneByName($this->name);
         // Le nom est unique mais ne dépend pas du serveur, c'est une amélioration à faire, plus tard

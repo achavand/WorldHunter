@@ -38,7 +38,7 @@ class RegistrationFormType extends AbstractType
                 "trim" => true,
                 "attr" => [
                     "placeholder" => "email@email.com",
-                    "class" => "registerFormInput modalFormInput"
+                    "class" => "registerFormInput modalFormInput form-block"
                 ],
                 "constraints" => [
                     new Email([
@@ -64,7 +64,7 @@ class RegistrationFormType extends AbstractType
                 "trim" => true,
                 "attr" => [
                     "placeholder" => $this->translator->trans("Nom d'utilisateur"),
-                    "class" => "registerFormInput modalFormInput"
+                    "class" => "registerFormInput modalFormInput form-block"
                 ],
                 "constraints" => [
                     new NotBlank([
@@ -89,13 +89,13 @@ class RegistrationFormType extends AbstractType
                 "first_options" => [
                     "label" => $this->translator->trans("Mot de passe"),
                     "attr" => [
-                        "class" => "registerFormInput modalFormInput"
+                        "class" => "registerFormInput modalFormInput form-block"
                     ],
                 ],
                 "second_options" => [
                     "label" => $this->translator->trans("Confirmez le mot de passe"),
                     "attr" => [
-                        "class" => "registerFormInput modalFormInput"
+                        "class" => "registerFormInput modalFormInput form-block"
                     ],
                 ],
                 "constraints" => [
@@ -124,7 +124,7 @@ class RegistrationFormType extends AbstractType
             ->add("submit", SubmitType::class, [
                 "label" => $this->translator->trans("Inscription"),
                 "attr" => [
-                    "class" => "logBtn"
+                    "class" => "logBtn logBtn-mt"
                 ],
             ])
 
@@ -144,6 +144,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection'   => false
         ]);
     }
 }

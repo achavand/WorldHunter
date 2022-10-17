@@ -1,9 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'disconnectedBase.html.twig' %}
 
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-
-    {{ form(registrationForm) }}
+	<div class="disconnect-container">
+		<div class="log" style="text-align:center;">
+            <h1>Register</h1>
+            {{ form(registrationForm) }}
+		</div>
+	</div>
 {% endblock %}
+

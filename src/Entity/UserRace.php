@@ -13,19 +13,27 @@ class UserRace
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $url_image;
+    #[ORM\Column(type: 'text')]
+    private $url_img;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name_race;
+    private $name_race_fr;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    private $name_race_en;
+
+    #[ORM\Column(type: 'text')]
+    private $descriptionFr;
+
+    #[ORM\Column(type: 'text')]
+    private $descriptionEn;
 
     #[ORM\ManyToOne(targetEntity: RacialAdvantage::class, inversedBy: 'userRaces')]
-    private $racial_advantage;
+    #[ORM\JoinColumn(nullable: false)]
+    private $racialAdvantage;
 
-    #[ORM\OneToOne(mappedBy: 'race', targetEntity: Personnage::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'userRace', targetEntity: Personnage::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
     private $personnage;
 
     public function getId(): ?int
@@ -33,50 +41,74 @@ class UserRace
         return $this->id;
     }
 
-    public function getUrlImage(): ?string
+    public function getUrlImg(): ?string
     {
-        return $this->url_image;
+        return $this->url_img;
     }
 
-    public function setUrlImage(string $url_image): self
+    public function setUrlImg(string $url_img): self
     {
-        $this->url_image = $url_image;
+        $this->url_img = $url_img;
 
         return $this;
     }
 
-    public function getNameRace(): ?string
+    public function getNameRaceFr(): ?string
     {
-        return $this->name_race;
+        return $this->name_race_fr;
     }
 
-    public function setNameRace(string $name_race): self
+    public function setNameRaceFr(string $name_race_fr): self
     {
-        $this->name_race = $name_race;
+        $this->name_race_fr = $name_race_fr;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getNameRaceEn(): ?string
     {
-        return $this->description;
+        return $this->name_race_en;
     }
 
-    public function setDescription(string $description): self
+    public function setNameRaceEn(string $name_race_en): self
     {
-        $this->description = $description;
+        $this->name_race_en = $name_race_en;
+
+        return $this;
+    }
+
+    public function getDescriptionFr(): ?string
+    {
+        return $this->descriptionFr;
+    }
+
+    public function setDescriptionFr(string $descriptionFr): self
+    {
+        $this->descriptionFr = $descriptionFr;
+
+        return $this;
+    }
+
+    public function getDescriptionEn(): ?string
+    {
+        return $this->descriptionEn;
+    }
+
+    public function setDescriptionEn(string $descriptionEn): self
+    {
+        $this->descriptionEn = $descriptionEn;
 
         return $this;
     }
 
     public function getRacialAdvantage(): ?RacialAdvantage
     {
-        return $this->racial_advantage;
+        return $this->racialAdvantage;
     }
 
-    public function setRacialAdvantage(?RacialAdvantage $racial_advantage): self
+    public function setRacialAdvantage(?RacialAdvantage $racialAdvantage): self
     {
-        $this->racial_advantage = $racial_advantage;
+        $this->racialAdvantage = $racialAdvantage;
 
         return $this;
     }
@@ -88,11 +120,6 @@ class UserRace
 
     public function setPersonnage(Personnage $personnage): self
     {
-        // set the owning side of the relation if necessary
-        if ($personnage->getRace() !== $this) {
-            $personnage->setRace($this);
-        }
-
         $this->personnage = $personnage;
 
         return $this;

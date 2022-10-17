@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\LocaleClass;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -17,11 +18,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/{_locale}/register', name: 'register')]
+    #[Route('/{_locale}/inscription', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        $locale = new LocaleClass($request);
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user, ["attr" => ['class' => "log-form"]]);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,6 +42,8 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams()
         ]);
     }
 }

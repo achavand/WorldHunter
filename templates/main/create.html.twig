@@ -4,7 +4,11 @@
     <div class="background">
         <div class="creationCharacter-container">
             <h1>Créer un personnage</h1>
-
+            {% for message in app.flashes('warning') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {{form_start(characterForm)}}
             <div class="create-block" id="block-races">
                 <div class="create-left">

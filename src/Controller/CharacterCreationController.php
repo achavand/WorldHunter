@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Controller;
+
+use App\Classes\CharacterCreationCheckClass;
+use App\Classes\CreateCharacterClass;
+use App\Classes\LocaleClass;
+use App\Classes\ToolboxController;
+use App\Entity\Personnage;
+use App\Entity\Races;
+use App\Entity\RacialAdvantage;
+use App\Entity\UserRace;
+use App\Entity\Wallet;
+use App\Form\CreateCharacterType;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class CharacterCreationController extends AbstractController
+{
+
+    private $entityManager;
+    
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+        $this->entityManager = $this->doctrine->getManager();
+    }
+
+    #[Route('/{_locale}/character-creation', name: 'characterCreation')]
+    public function characterCreation(Request $request, CharacterCreationCheckClass $charCreation, ToolboxController $toolboxController, CreateCharacterClass $createCharacter): Response
+    {
+        $locale = new LocaleClass($request);
+        $personnage = new Personnage();
+        $createCharacterForm = $this->createForm(CreateCharacterType::class, $personnage);
+
+        $createCharacterForm->handleRequest($request);
+        if($createCharacterForm->isSubmitted() && $createCharacterForm->isValid()){
+            if (!$this->getUser()) {
+                return $this->redirectToRoute('disconnected_home');
+            }
+
+            $data = $request->get("create_character");
+            $formValid = $charCreation->checkData($data);
+            if($formValid){
+                //Info utilisateur : $this->getUser()
+                $wallet = $createCharacter->walletInit();
+                $personnage = $createCharacter->personnageInit($data);
+                $userRace = new UserRace();
+                dd($userRace);
+                dd("in IF");
+                // cas si formulaire valide
+            } else {
+                // On y reviendra mais c'est compliqué d'arriver ici
+                $this->addFlash("warning", "Echec");
+            }
+            dd($formValid);
+        }
+
+        $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
+        $races = $this->doctrine->getRepository(Races::class)->findAll();
+        $racialAdvantage = $this->doctrine->getRepository(RacialAdvantage::class)->findAll();
+        $stats = $toolboxController->generateStatArray();
+
+        
+        if(count($personnageList) > 0){
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('main/create.html.twig', [
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams(),
+            "races" => $races,
+            "advantages" => $racialAdvantage,
+            "stats" => $stats,
+            "characterForm" => $createCharacterForm->createView(),
+            "statPoints" => 10
+        ]);
+    }
+}

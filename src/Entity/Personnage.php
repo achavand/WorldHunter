@@ -73,9 +73,8 @@ class Personnage
     #[ORM\JoinColumn(nullable: false)]
     private $Talent;
 
-    #[ORM\OneToOne(inversedBy: 'personnage', targetEntity: UserRace::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $race;
+    #[ORM\OneToOne(mappedBy: 'personnage', targetEntity: UserRace::class, cascade: ['persist', 'remove'])]
+    private $userRace;
 
     public function getId(): ?int
     {
@@ -310,15 +309,21 @@ class Personnage
         return $this;
     }
 
-    public function getRace(): ?UserRace
+    public function getUserRace(): ?UserRace
     {
-        return $this->race;
+        return $this->userRace;
     }
 
-    public function setRace(UserRace $race): self
+    public function setUserRace(UserRace $userRace): self
     {
-        $this->race = $race;
+        // set the owning side of the relation if necessary
+        if ($userRace->getPersonnage() !== $this) {
+            $userRace->setPersonnage($this);
+        }
+
+        $this->userRace = $userRace;
 
         return $this;
     }
+
 }

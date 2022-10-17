@@ -103,8 +103,8 @@ class CreateCharacterType extends AbstractType
                     new Length([
                         "min" => 4,
                         "max" => 16,
-                        "minMessage" => $this->translator->trans("Le mot de passe doit contenir au moins") . " {{ limit }} " . $this->translator->trans("caractères."),
-                        "maxMessage" => $this->translator->trans("Le mot de passe doit contenir moins de") . " {{ limit }} " . $this->translator->trans("caractères."),
+                        "minMessage" => $this->translator->trans("Le nom doit contenir au moins") . " {{ limit }} " . $this->translator->trans("caractères."),
+                        "maxMessage" => $this->translator->trans("Le nom doit contenir moins de") . " {{ limit }} " . $this->translator->trans("caractères."),
                     ])
                 ]
             ])

@@ -19,10 +19,10 @@
             {% block body %}{% endblock %}
         </div>
 
-        {% set idModal = "Inscription"|trans  %}
+        {# {% set idModal = "Inscription"|trans  %}
         {% set titleModal = "Inscription"|trans  %}
         {% set contentModal = form(registrationForm) ~ "<div class='rememberLog'><a href="~ path("disconnected_home") ~">" ~ "Déjà un compte ?"|trans ~ "</a></div>" %}  
-        {{ modalBuilder(idModal, titleModal, contentModal) }}
+        {{ modalBuilder(idModal, titleModal, contentModal) }} #}
 
         {% block javascripts %}{% endblock %}
     </body>
