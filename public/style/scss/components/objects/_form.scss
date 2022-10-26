@@ -37,3 +37,37 @@
         width: 100%;
     }
 }
+
+.formTitle-mb {
+    margin-bottom: 25px;
+}
+
+.log-form {
+    color: $darkSkyBlue;
+    @include background-img("../../../assets/backgrounds/login-background.png");
+    width: 300px;
+    padding-bottom: $formPadding;
+    border-radius: 7px;
+
+    &:before {opacity: .5;}
+
+    h1 {
+        text-align: center;
+        padding-top: 12px;
+    }
+
+    label {
+        font-size: 1.3rem;
+    }
+
+    .form-block {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .form_submit {
+        margin: 0 auto;
+        display: block;
+    }
+
+}

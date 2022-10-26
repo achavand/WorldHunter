@@ -72,6 +72,31 @@ a {
 .form-block input, .form-block label {
   width: 100%; }
 
+.formTitle-mb {
+  margin-bottom: 25px; }
+
+.log-form {
+  color: #03224c;
+  background-image: url("../../../assets/backgrounds/login-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 300px;
+  padding-bottom: 10px;
+  border-radius: 7px; }
+  .log-form:before {
+    opacity: .5; }
+  .log-form h1 {
+    text-align: center;
+    padding-top: 12px; }
+  .log-form label {
+    font-size: 1.3rem; }
+  .log-form .form-block {
+    width: 70%;
+    margin: 0 auto; }
+  .log-form .form_submit {
+    margin: 0 auto;
+    display: block; }
+
 .disconnectedHeader {
   color: #f2dcaa;
   font-size: 30px;
@@ -95,27 +120,6 @@ a {
   display: flex;
   justify-content: space-around;
   align-items: center; }
-  .disconnect-container .log .log-form {
-    color: #03224c;
-    background-image: url("../../../assets/backgrounds/login-background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 300px;
-    padding-bottom: 10px;
-    border-radius: 7px; }
-    .disconnect-container .log .log-form:before {
-      opacity: .5; }
-    .disconnect-container .log .log-form h1 {
-      text-align: center;
-      padding-top: 12px; }
-    .disconnect-container .log .log-form label {
-      font-size: 1.3rem; }
-    .disconnect-container .log .log-form .form-block {
-      width: 60%;
-      margin: 0 auto; }
-    .disconnect-container .log .log-form .form_submit {
-      margin: 0 auto;
-      display: block; }
   .disconnect-container .disconnected-presentation {
     width: 25%; }
     .disconnect-container .disconnected-presentation h2 {
@@ -128,13 +132,17 @@ a {
 
 @media screen and (max-width: 1000px) {
   .disconnect-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
     margin-top: 50px; }
+    .disconnect-container .disconnected-presentation {
+      width: 70%;
+      margin-top: 50px; }
     .disconnect-container .log {
-      width: 100%; }
-      .disconnect-container .log .log-form {
-        width: 80%;
-        margin: auto; } }
+      width: 70%;
+      margin: 0 auto; }
+      .disconnect-container .log .log-form, .disconnect-container .log h1 {
+        width: 70%;
+        margin: 15px auto; } }
 .langList {
   text-align: center; }
   .langList li {
@@ -218,14 +226,14 @@ a {
           align-items: center;
           flex-direction: column;
           border: 5px solid black;
-          border-image: linear-gradient(to right, #c33764, #1d2671);
+          border-image: linear-gradient(to right, #34e89e, #0f3443);
           border-image-slice: 1; }
           .creationCharacter-container .create-block .create-left .charactersList .characterlist-border .characterList-img {
             width: 200px;
             height: 192px;
             cursor: pointer;
             border-bottom: 5px solid black;
-            border-image: linear-gradient(to right, #c33764, #1d2671);
+            border-image: linear-gradient(to right, #34e89e, #0f3443);
             border-image-slice: 1; }
     .creationCharacter-container .create-block .create-right {
       width: 75%; }
@@ -324,6 +332,7 @@ a {
     .creationCharacter-container #block-stats .character-name input {
       border: none;
       width: 25%;
+      min-width: 200px;
       height: 25px;
       margin: 0 auto;
       padding: 5px 10px; }

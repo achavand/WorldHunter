@@ -14,7 +14,7 @@
                 <h2>{{presentation[0].title}}</h2>
             {% endif %}
 
-            {% if params == "fr" %}
+            {% if params._locale == "fr" %}
                 {{presentation[0].descriptionFr|raw}}
             {% else %}
                 {{presentation[0].descriptionEn|raw}}

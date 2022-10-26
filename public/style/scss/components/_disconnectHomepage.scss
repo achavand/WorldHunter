@@ -4,38 +4,6 @@
     margin-top: 25px;
     @include flex(space-around, center);
 
-    .log {
-        .log-form {
-            color: $darkSkyBlue;
-            @include background-img("../../../assets/backgrounds/login-background.png");
-            width: 300px;
-            padding-bottom: $formPadding;
-            border-radius: 7px;
-
-            &:before {opacity: .5;}
-
-            h1 {
-                text-align: center;
-                padding-top: 12px;
-            }
-
-            label {
-                font-size: 1.3rem;
-            }
-
-            .form-block {
-                width: 60%;
-                margin: 0 auto;
-            }
-
-            .form_submit {
-                margin: 0 auto;
-                display: block;
-            }
-
-        }
-    }
-
     .disconnected-presentation {
         width: 25%;
         
@@ -55,15 +23,20 @@
 @media screen and (max-width: $dimension1000) {
 
     .disconnect-container {
-        flex-direction: column-reverse;
+        flex-direction: column;
         margin-top: 50px;
-
+        
+        .disconnected-presentation {
+            width: 70%;
+            margin-top: 50px;
+        }
         .log {
-            width: 100%;
+            width: 70%;
+            margin: 0 auto;
 
-            .log-form {
-                width: 80%;
-                margin: auto;
+            .log-form, h1 {
+                width: 70%;
+                margin: 15px auto;
             }
         }
     }
