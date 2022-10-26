@@ -31,7 +31,7 @@ class MainController extends AbstractController
                 // Il faudra traiter differents cas tel que le choix du personnage par exemple (on complètera plus tard)
 
                 // On créera tout cela un peu plus tard (Penser à donner un vrai nom à la route et à supprimer la route de test un peu plus bas)
-                return $this->redirectToRoute('neSertARien');
+                return $this->redirectToRoute('game');
             } else {
                 return $this->redirectToRoute('characterCreation');
             }
@@ -45,6 +45,15 @@ class MainController extends AbstractController
         // Verifier le nombre de personnage
             // Si 0 redirigier vers création de personnage
         return $this->render('main/index.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    #[Route('/{_locale}/game', name: 'game')]
+    public function game(): Response
+    {
+
+        return $this->render('main/game.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }

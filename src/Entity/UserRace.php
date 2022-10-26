@@ -29,11 +29,11 @@ class UserRace
     private $descriptionEn;
 
     #[ORM\ManyToOne(targetEntity: RacialAdvantage::class, inversedBy: 'userRaces')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $racialAdvantage;
 
     #[ORM\OneToOne(inversedBy: 'userRace', targetEntity: Personnage::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $personnage;
 
     public function getId(): ?int

@@ -3,13 +3,17 @@
 namespace App\Classes;
 
 use App\Entity\Personnage;
+use App\Entity\Races;
+use App\Entity\UserRace;
 use App\Entity\Wallet;
+use App\Repository\RacesRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CreateCharacterClass
-{    
+class CreateCharacterClass extends AbstractController
+{
     public function __construct()
     {
-
     }
 
     public function walletInit()
@@ -43,9 +47,46 @@ class CreateCharacterClass
         return $personnage;
     }
 
-    public function userRaceInit()
+    private function userRaceUrlImg(mixed $race, mixed $gender)
     {
-        
+        if($gender == "female"){
+            $url = $race->getUrlImageFemale();
+        } else if($gender == "male"){
+            $url = $race->getUrlImageMale();
+        }
+        return $url;
     }
+
+    private function userRaceName(mixed $race, mixed $gender)
+    {
+        if($gender == 'female'){
+            $name = [
+                $race->getNameFemale(),
+                $race->getNameFemaleEn(),
+            ];
+        } else if ($gender == 'male'){
+            $name = [
+                $race->getNameMale(),
+                $race->getNameMaleEn()
+            ];
+        }
+        return $name;
+    }
+
+    public function userRaceInit($data, $doctrine)
+    {
+        $race     = $doctrine->getRepository(Races::class)->findOneById($data["race"]);
+        $urlImg   = $this->userRaceUrlImg($race, $data["gender"]);
+        $name     = $this->userRaceName($race, $data["gender"]);
+        $userRace = new UserRace();
+        $userRace->setUrlImg($urlImg)
+                 ->setNameRaceFr($name[0])
+                 ->setNameRaceEn($name[1])
+                 ->setDescriptionFr($race->getDescription())
+                 ->setDescriptionEn($race->getDescriptionEn());
+        return $userRace;
+    }
+
+
 
 }

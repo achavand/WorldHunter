@@ -70,7 +70,7 @@ class Personnage
     private $Wallet;
 
     #[ORM\ManyToOne(targetEntity: Talent::class, inversedBy: 'personnages')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $Talent;
 
     #[ORM\OneToOne(mappedBy: 'personnage', targetEntity: UserRace::class, cascade: ['persist', 'remove'])]

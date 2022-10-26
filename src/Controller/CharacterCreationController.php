@@ -9,9 +9,11 @@ use App\Classes\ToolboxController;
 use App\Entity\Personnage;
 use App\Entity\Races;
 use App\Entity\RacialAdvantage;
+use App\Entity\Talent;
 use App\Entity\UserRace;
 use App\Entity\Wallet;
 use App\Form\CreateCharacterType;
+use App\Repository\RacesRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +22,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CharacterCreationController extends AbstractController
 {
-
     private $entityManager;
     
     public function __construct(private ManagerRegistry $doctrine)
@@ -44,13 +45,19 @@ class CharacterCreationController extends AbstractController
             $data = $request->get("create_character");
             $formValid = $charCreation->checkData($data);
             if($formValid){
-                //Info utilisateur : $this->getUser()
                 $wallet = $createCharacter->walletInit();
                 $personnage = $createCharacter->personnageInit($data);
-                $userRace = new UserRace();
-                dd($userRace);
-                dd("in IF");
-                // cas si formulaire valide
+                $userRace = $createCharacter->userRaceInit($data, $this->doctrine);
+                $personnage->setUserPersonnage($this->getUser())
+                           ->setWallet($wallet)
+                           ->setUserRace($userRace);
+                $wallet->setPersonnage($personnage);
+
+                $this->entityManager->persist($personnage);
+                $this->entityManager->persist($wallet);
+                $this->entityManager->persist($userRace);
+                $this->entityManager->flush();
+                return $this->redirectToRoute('game');
             } else {
                 // On y reviendra mais c'est compliqué d'arriver ici
                 $this->addFlash("warning", "Echec");
