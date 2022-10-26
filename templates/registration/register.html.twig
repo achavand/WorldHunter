@@ -7,6 +7,9 @@
 		<div class="log log-form" style="text-align:center;">
             <h1 class="formTitle-mb">{% trans %}Inscription{% endtrans %}</h1>
             {{ form(registrationForm) }}
+			<div class='rememberLog'>
+				<a href="{{ path("disconnected_home") }}"> {{"Déjà un compte ?"|trans}} </a>
+			</div>
 		</div>
 	</div>
 {% endblock %}
