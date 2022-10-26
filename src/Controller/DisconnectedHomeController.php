@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\LocaleClass;
+use App\Entity\DisconnectedPresentation;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -39,9 +40,12 @@ class DisconnectedHomeController extends AbstractController
     }
 
     #[Route('/{_locale}', name: 'disconnected_home')]
-    public function disconnected_home(AuthenticationUtils $authenticationUtils, Request $request,  UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function disconnected_home(
+        AuthenticationUtils $authenticationUtils, Request $request,  UserPasswordHasherInterface $userPasswordHasher, 
+        UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $locale = new LocaleClass($request);
+        $presentation = $entityManager->getRepository(DisconnectedPresentation::class)->findAll();
         // Redirection si l'utilisateur est connecté
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -73,6 +77,7 @@ class DisconnectedHomeController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
             'registrationForm' => $form->createView(),
+            "presentation" => $presentation,
             "route" => $locale->setRoute(),
             "params" => $locale->setRouteParams()
         ]);
