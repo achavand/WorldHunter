@@ -10,18 +10,17 @@
         </div>
 
         <div class="disconnected-presentation">
-            <p>
-                {% trans %}
-                    De nombreuses batailles sont livrées chaque jour. Les vainqueurs en tire gloire et pouvoir.
-                {% endtrans %}
-                <br>
-                {% trans %}
-                    Un artefact a été crée dans un des univers afin de pouvoir voyager à travers le multivers. Depuis, les batailles se sont intesifiées, les combattants se sont renforcés.
-                    Rejoins ces batailes, reforce toi et deviens le meilleur combattant du multivers.
-                {% endtrans %}
-                    
-            </p>
+            {% if presentation[0].title %}
+                <h2>{{presentation[0].title}}</h2>
+            {% endif %}
+
+            {% if params == "fr" %}
+                {{presentation[0].descriptionFr|raw}}
+            {% else %}
+                {{presentation[0].descriptionEn|raw}}
+            {% endif %}
         </div>
+
 
         {# {% set idModal = "Inscription"|trans  %}
         {% set titleModal = "Inscription"|trans  %}

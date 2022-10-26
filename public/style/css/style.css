@@ -118,7 +118,10 @@ a {
       display: block; }
   .disconnect-container .disconnected-presentation {
     width: 25%; }
-    .disconnect-container .disconnected-presentation p {
+    .disconnect-container .disconnected-presentation h2 {
+      text-align: center;
+      font-size: 2rem; }
+    .disconnect-container .disconnected-presentation div {
       font-size: 1.3rem;
       line-height: 1.7rem;
       text-shadow: 7px 7px 7px black; }
