@@ -36,8 +36,6 @@ class MainController extends AbstractController
                 return $this->redirectToRoute('characterCreation');
             }
         } else{
-            // On pourrait faire pas mal de chose ici (renvoyer et afficher un message d'erreur par exemple)
-            // Il faut verifier l'effet afin de voir ce que l'on va faire
             return $this->redirectToRoute('disconnected_home');
         }
 

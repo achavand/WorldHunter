@@ -44,12 +44,12 @@ class DisconnectedHomeController extends AbstractController
         AuthenticationUtils $authenticationUtils, Request $request,  UserPasswordHasherInterface $userPasswordHasher, 
         UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        if($this->getUser()){
+            return $this->redirectToRoute('home');
+        }
+
         $locale = new LocaleClass($request);
         $presentation = $entityManager->getRepository(DisconnectedPresentation::class)->findAll();
-        // Redirection si l'utilisateur est connecté
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

@@ -21,6 +21,10 @@ class RegistrationController extends AbstractController
     #[Route('/{_locale}/inscription', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        if($this->getUser()){
+            return $this->redirectToRoute('home');
+        }
+        
         $locale = new LocaleClass($request);
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user, ["attr" => ['class' => "log-form"]]);
