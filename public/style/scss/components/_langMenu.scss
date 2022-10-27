@@ -3,9 +3,7 @@
 
     li {position: relative;}
 
-    img {
-        width: 30px;
-    }
+    img { width: 30px; }
 
     ul {
         @include marginPadding(0,0);
@@ -16,9 +14,7 @@
             line-height: 50px;
             border-bottom: 1px solid white;
             
-            &:last-child {
-                border-bottom: none;
-            }
+            &:last-child { border-bottom: none; }
         }
     }
 
@@ -28,7 +24,5 @@
         width: 50px;
     }
 
-    &:hover .lang-menu{
-        display: block;
-    }
+    &:hover .lang-menu{ display: block; }
 }

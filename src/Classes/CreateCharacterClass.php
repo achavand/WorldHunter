@@ -15,16 +15,44 @@ class CreateCharacterClass extends AbstractController
     public function __construct()
     {
     }
-
-    public function walletInit()
+    
+    /**
+     * Generate the array who contains the stats list for Character Creation template
+     *
+     * @return array
+     */
+    public function generateStatArray():array
+    {
+        return [
+            "vitality" => ["Vitalité", "vitality"],
+            "phyAtk"   => ["Attaque physique", "physical-atk"], 
+            "phyDef"   => ["Défense physique", "physical-def"], 
+            "magicAtk" => ["Attaque magique", "magical-atk"], 
+            "macifDef" => ["Défense magique", "magical-def"], 
+            "agility"  => ["Agilité", "agility"]
+        ];
+    }
+    
+    /**
+     * Initialise the wallet
+     *
+     * @return Wallet
+     */
+    public function walletInit():Wallet
     {
         $wallet = new Wallet();
         $wallet->setGold(100)
                ->setSilver(1000);
         return $wallet;
     }
-
-    public function personnageInit($data)
+    
+    /**
+     * Initialise the Personnage
+     *
+     * @param  mixed $data - Data sent by the form for create a new Personnage
+     * @return Personnage
+     */
+    public function personnageInit($data):Personnage
     {
         // Il y'a plusieurs valeur par défaut qui seront importé plus tard, mais mise en dure actuellement pour que le code soit fonctionnel / Des améliorations viendront
         $personnage = new Personnage();
@@ -46,8 +74,8 @@ class CreateCharacterClass extends AbstractController
                    ->setStatPoint(0);
         return $personnage;
     }
-
-    private function userRaceUrlImg(mixed $race, mixed $gender)
+    
+    private function userRaceUrlImg(mixed $race, mixed $gender):string
     {
         if($gender == "female"){
             $url = $race->getUrlImageFemale();
@@ -57,7 +85,7 @@ class CreateCharacterClass extends AbstractController
         return $url;
     }
 
-    private function userRaceName(mixed $race, mixed $gender)
+    private function userRaceName(mixed $race, mixed $gender):mixed
     {
         if($gender == 'female'){
             $name = [
@@ -72,8 +100,15 @@ class CreateCharacterClass extends AbstractController
         }
         return $name;
     }
-
-    public function userRaceInit($data, $doctrine)
+    
+    /**
+     * Initialise the UserRace
+     *
+     * @param  mixed $data - Data sent by the form for create a new Personnage
+     * @param  mixed $doctrine
+     * @return UserRace
+     */
+    public function userRaceInit($data, $doctrine):UserRace
     {
         $race     = $doctrine->getRepository(Races::class)->findOneById($data["race"]);
         $urlImg   = $this->userRaceUrlImg($race, $data["gender"]);
@@ -86,7 +121,4 @@ class CreateCharacterClass extends AbstractController
                  ->setDescriptionEn($race->getDescriptionEn());
         return $userRace;
     }
-
-
-
 }

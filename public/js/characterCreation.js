@@ -20,7 +20,6 @@ const currentStat     = document.querySelectorAll("#statCurrent")
 const statDecrease    = document.querySelectorAll("#statDecrease");
 const statIncrease    = document.querySelectorAll("#statIncrease");
 
-
 // elements
 const racesDescriptionTitle = document.querySelector("#races-description-title");
 const racesDescriptionText  = document.querySelectorAll(".races-description-text");
@@ -33,6 +32,11 @@ personnagesList[0].classList.add("brightness");
 raceInput.value =  personnagesList[0].dataset.id;
 genderInput.value = genderList[0].children[0].dataset.gender;
 
+/**
+ * When selecting a gender, switch the classes that indicate which one is selected
+ * @date 2022-10-27
+ * @param {any} characterListId
+ */
 function genderManager(characterListId){
     Toolbox.removeClassOnArray(characterList, "display-none");
     characterList[characterListId].classList.add("display-none");
@@ -41,6 +45,7 @@ function genderManager(characterListId){
     Toolbox.removeClassOnArray(charFemale, "brightness");
 }
 
+// Switch between the pages of the character creation
 btnNav.forEach(btn => {
     btn.addEventListener("click", () => {
         if(btn.dataset.navtype == 'next'){
@@ -51,6 +56,7 @@ btnNav.forEach(btn => {
     })
 })
 
+// When select a character from the list, update the data according to the new selected character
 personnagesList.forEach( personnage => {
     personnage.addEventListener("click", () => {
         Toolbox.removeClassOnArray(personnagesList, "brightness")
@@ -101,6 +107,7 @@ statIncrease.forEach(stat => {
     })
 })
 
+// Checks the form data and displays or hides the validation button
 setInterval(() => {
     canValidate = CharacterCreation.canValidate(personnagesList, genderList, nameInput);
 

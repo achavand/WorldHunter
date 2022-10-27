@@ -26,15 +26,25 @@ class CharacterCreationCheckClass
         $this->characterRepo = $characterRepo;
         $this->racesRepo     = $racesRepo;
     }
-
+    
+    /**
+     * Check if the username wanted by the user is unic or not
+     *
+     * @return bool
+     */
     private function checkUnicName():bool
     {
-        $nameExist = $this->characterRepo->findOneByName($this->name);
         // Le nom est unique mais ne dépend pas du serveur, c'est une amélioration à faire, plus tard
+        $nameExist = $this->characterRepo->findOneByName($this->name);
         // Return false if the name already exist in database
         return $nameExist ? false:true;
     }
-
+    
+    /**
+     * Check if the name of the personnage is valid
+     *
+     * @return bool
+     */
     private function checkName():bool
     {        
         if(
@@ -46,21 +56,35 @@ class CharacterCreationCheckClass
             return false;
         }
     }
-
+    
+    /**
+     * Check if the Race wanted by the user exists
+     *
+     * @return bool
+     */
     private function checkRace():bool
     {
         $racesExist = $this->racesRepo->findOneById($this->raceId);
-        // Return true if races exists in races table in database (not in user_races)
         return $racesExist ? true:false;
     }
-
-    private function checkGender()
+    
+    /**
+     * Check if the gender selected exists
+     *
+     * @return bool
+     */
+    private function checkGender():bool
     {
-        // Return  true if this->gender is one of the good names
         return ($this->gender == "female" OR $this->gender == "male") ? true : false;
     }
-
-    private function checkStats($statsList)
+    
+    /**
+     * Check if the values of the stats are good or not
+     *
+     * @param  mixed $statsList
+     * @return bool
+     */
+    private function checkStats($statsList):bool
     {
         foreach ($statsList as $key => $data) {
             $data = intval($data);
@@ -73,8 +97,14 @@ class CharacterCreationCheckClass
         }
         return $isValid;
     }
-
-    private function createStatList($formData)
+    
+    /**
+     * Check if the stats exists and the points that the user give to them are good or not
+     *
+     * @param  mixed $formData
+     * @return array|bool
+     */
+    private function createStatList($formData):array|bool
     {
         $validStat = ["physical_atk", "magical_atk", "physical_def", "magical_def", "agility", "vitality"];
         $statList = [];
@@ -90,8 +120,14 @@ class CharacterCreationCheckClass
             return false;
         }
     }
-
-    public function checkData(array $formData)
+    
+    /**
+     * Check if the form sent by the user for create a new Personnage is good or not
+     *
+     * @param  mixed $formData
+     * @return bool
+     */
+    public function checkData(array $formData):bool
     {
         $this->name = trim($formData["name"]);
         $this->raceId = intval($formData["race"]);

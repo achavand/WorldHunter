@@ -24,9 +24,7 @@
                 flex-direction: column;
 
                 .characterlist-border {
-                    display: flex;
-                    justify-content: normal;
-                    align-items: center;
+                    @include flex(normal, center);
                     flex-direction: column;
                     @include gradientBorder(5px solid black, $borderGradient);                    
 
@@ -37,6 +35,8 @@
                         border-bottom: 5px solid black;
                         border-image: linear-gradient($borderGradient);
                         border-image-slice: 1;
+
+                        &:last-child { border-bottom: none; }
                     };
                 }
                 
@@ -46,14 +46,13 @@
         .create-right {
             width: 75%;
 
-            .races-description {
+            .races-description {                  
                 border: 2px solid white;
                 border-radius: 1%;
                 width: 50%;
                 height: 50%;
                 overflow: overlay;
-                margin: auto;
-                padding: 25px;
+                @include marginPadding(auto, 25px);
 
                 h2 {
                     text-align: center;
@@ -77,8 +76,7 @@
                 @include flex(center, center);
 
                 .gender-btn {
-                    margin: 0 5%;
-                    padding: 25px;
+                    @include marginPadding(0 5%, 25px);
                     border: 4px solid rgb(25, 25, 112);
                     background-color: #f2dcaa;
                     box-shadow: 3px 3px 3px rgba(25, 25, 112, 50%);
@@ -87,9 +85,7 @@
                     width: 70px;
                     cursor: pointer;
 
-                    .gender-img{
-                        height: 75px;
-                    }
+                    .gender-img{ height: 75px; }
                 }
 
                 .genderSelected {
@@ -107,14 +103,12 @@
                 display: flex;
 
                 .hiddenValidate {
-                    visibility: hidden;
-                    opacity: 0;
+                    @include opacityVisibility(hidden, 0);
                 }
 
                 div, button {
                     width: max-content;
-                    margin: 0 auto;
-                    padding: 20px 50px;
+                    @include marginPadding(0 auto, 20px 50px);
                     color: $primaryColor;
                     text-decoration: none;
                     background: linear-gradient(to right, #c33764, #1d2671);
@@ -123,9 +117,7 @@
                     border: none;
                     transition: box-shadow .3s;
 
-                    &:hover {
-                        box-shadow: none;
-                    }
+                    &:hover { box-shadow: none; }
                 }
             }
         }
@@ -134,7 +126,7 @@
     #block-stats {
         .characterStats {
             .borderStat {
-                border: 2px solid white;
+                @include gradientBorder(5px solid black, $borderGradient);                    
                 border-radius: 1%;
                 background-color: #f2dcaaad;
                 width: max-content;
@@ -142,16 +134,14 @@
                 color: black;
                 font-weight: bold;
 
-                h2 {
-                    text-align: center;
-                }
+                h2 { text-align: center; }
 
                 table {
                     tr{
                         line-height: 35px;
-                        .tableStat-name {
-                            width: 150px;
-                        }
+
+                        .tableStat-name { width: 150px; }
+
                         .tableStat-manager {
                             #statDecrease, #statIncrease {
                                 padding: 10px;
@@ -161,9 +151,8 @@
                             }
                         }
                     }
-                    .remainingPoints {
-                        text-align: center;
-                    }
+
+                    .remainingPoints { text-align: center; }
                 }
             }
         }
@@ -171,9 +160,8 @@
         .character-name {
             display: flex;
             flex-direction: column;
-            margin: 0 auto;
+            @include marginPadding(0 auto, 25px);
             width: 50%;
-            padding: 25px;
 
             label {
                 text-align: center;
@@ -186,8 +174,7 @@
                 width: 25%;
                 min-width: 200px;
                 height: 25px;
-                margin: 0 auto;
-                padding: 5px 10px;
+                @include marginPadding(0 auto, 5px 10px);
             }
         }
     }

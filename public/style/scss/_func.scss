@@ -30,3 +30,8 @@
     border-image: linear-gradient($borderImg);
     border-image-slice: $border-slice;
 }
+
+@mixin opacityVisibility($visibility, $opacity) {
+    visibility: $visibility;
+    opacity: $opacity;
+}

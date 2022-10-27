@@ -142,7 +142,7 @@ let CharacterCreation = {
         document.querySelectorAll("#statCurrent").forEach(stat => {
             sum += Number(stat.innerHTML)
         });
-        // Voir pour variabiliser le 10 afin qu'on ai juste à le modifier depuis le controller
+        // Voir pour variabiliser le 10
         sum += 10
         return sum;
     },

@@ -1,6 +1,5 @@
 .modal {
-    visibility: hidden;
-    opacity: 0;
+    @include opacityVisibility(hidden, 0);
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     background: rgba(77, 77, 77, .7);
@@ -27,8 +26,5 @@
         }
     }
 
-    &:target {
-        visibility: visible;
-        opacity: 1;
-    }
+    &:target { @include opacityVisibility(visible, 1); }
 }

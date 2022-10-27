@@ -5,9 +5,7 @@
     padding: $formPadding;
     margin-bottom: 10px;
 
-    &:focus {
-        outline: none;
-    }
+    &:focus { outline: none; }
 }
 
 .modalFormInput {
@@ -23,24 +21,18 @@
         text-decoration: none;
         color: $darkSkyBlue;
 
-        &:hover {
-            text-decoration: underline;
-        }
+        &:hover { text-decoration: underline; }
     }
 }
 
 .form-block {
-    .log-form {
-        width: 100%;
-    }
+    .log-form { width: 100%; }
     input, label {
         width: 100%;
     }
 }
 
-.formTitle-mb {
-    margin-bottom: 25px;
-}
+.formTitle-mb { margin-bottom: 25px; }
 
 .log-form {
     color: $darkSkyBlue;
@@ -49,25 +41,14 @@
     padding-bottom: $formPadding;
     border-radius: 7px;
 
-    &:before {opacity: .5;}
+    &:before { opacity: .5; }
 
-    h1 {
-        text-align: center;
-        padding-top: 12px;
-    }
+    h1 { text-align: center; padding-top: 12px; }
 
-    label {
-        font-size: 1.3rem;
-    }
+    label { font-size: 1.3rem; }
 
-    .form-block {
-        width: 70%;
-        margin: 0 auto;
-    }
+    .form-block { width: 70%; margin: 0 auto; }
 
-    .form_submit {
-        margin: 0 auto;
-        display: block;
-    }
+    .form_submit { margin: 0 auto; display: block; }
 
 }

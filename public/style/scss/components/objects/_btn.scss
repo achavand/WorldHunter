@@ -11,11 +11,7 @@
     cursor: pointer;
     transition: .3s;
 
-    &:hover {
-        box-shadow: none;
-    }
+    &:hover { box-shadow: none; }
 }
 
-.logBtn-mt {
-    margin-top: 10px;
-}
+.logBtn-mt { margin-top: 10px; }

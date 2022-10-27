@@ -59,16 +59,15 @@ class CharacterCreationController extends AbstractController
                 $this->entityManager->flush();
                 return $this->redirectToRoute('game');
             } else {
-                // On y reviendra mais c'est compliqué d'arriver ici
+                // Je crois qu'il n'est pas appelé dans le template
                 $this->addFlash("warning", "Echec");
             }
-            dd($formValid);
         }
 
         $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
         $races = $this->doctrine->getRepository(Races::class)->findAll();
         $racialAdvantage = $this->doctrine->getRepository(RacialAdvantage::class)->findAll();
-        $stats = $toolboxController->generateStatArray();
+        $stats = $createCharacter->generateStatArray();
 
         
         if(count($personnageList) > 0){

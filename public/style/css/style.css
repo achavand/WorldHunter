@@ -104,7 +104,6 @@ a {
   justify-content: center;
   align-items: flex-start; }
   .disconnectedHeader .disconnectedHeader-link {
-    text-decoration: none;
     color: #f2dcaa;
     margin: 0px;
     padding: 25px;
@@ -235,6 +234,8 @@ a {
             border-bottom: 5px solid black;
             border-image: linear-gradient(to right, #34e89e, #0f3443);
             border-image-slice: 1; }
+            .creationCharacter-container .create-block .create-left .charactersList .characterlist-border .characterList-img:last-child {
+              border-bottom: none; }
     .creationCharacter-container .create-block .create-right {
       width: 75%; }
       .creationCharacter-container .create-block .create-right .races-description {
@@ -300,7 +301,9 @@ a {
           .creationCharacter-container .create-block .create-right .submit-block div:hover, .creationCharacter-container .create-block .create-right .submit-block button:hover {
             box-shadow: none; }
   .creationCharacter-container #block-stats .characterStats .borderStat {
-    border: 2px solid white;
+    border: 5px solid black;
+    border-image: linear-gradient(to right, #34e89e, #0f3443);
+    border-image-slice: 1;
     border-radius: 1%;
     background-color: #f2dcaaad;
     width: max-content;
@@ -323,8 +326,8 @@ a {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 50%;
-    padding: 25px; }
+    padding: 25px;
+    width: 50%; }
     .creationCharacter-container #block-stats .character-name label {
       text-align: center;
       font-size: 1.3rem;
