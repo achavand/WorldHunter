@@ -24,12 +24,12 @@ class CreateCharacterClass extends AbstractController
     public function generateStatArray():array
     {
         return [
-            "vitality" => ["Vitalité", "vitality"],
-            "phyAtk"   => ["Attaque physique", "physical-atk"], 
-            "phyDef"   => ["Défense physique", "physical-def"], 
-            "magicAtk" => ["Attaque magique", "magical-atk"], 
-            "macifDef" => ["Défense magique", "magical-def"], 
-            "agility"  => ["Agilité", "agility"]
+            "vitality" => ["Vitalité", "vitality", "Vitality"],
+            "phyAtk"   => ["Attaque physique", "physical-atk", "Physical attack"], 
+            "phyDef"   => ["Défense physique", "physical-def", "Physical defense"], 
+            "magicAtk" => ["Attaque magique", "magical-atk", "Magical Attack"], 
+            "macifDef" => ["Défense magique", "magical-def", "Magical defense"], 
+            "agility"  => ["Agilité", "agility", "Agility"]
         ];
     }
     

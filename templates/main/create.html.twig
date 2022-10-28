@@ -3,12 +3,12 @@
 {% block body %}
     <div class="background">
         <div class="creationCharacter-container">
-            <h1>Créer un personnage</h1>
-            {% for message in app.flashes('warning') %}
+            <h1>{% trans %}Créer un personnage{% endtrans %}</h1>
+            {# {% for message in app.flashes('warning') %}
                 <div class="alert alert-success">
                     {{ message }}
                 </div>
-            {% endfor %}
+            {% endfor %} #}
             {{form_start(characterForm)}}
             <div class="create-block" id="block-races">
                 <div class="create-left">
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="submit-block">
-                        <div id="btn-creationCharacter-nav" data-navType="next">Suivant</div>
+                        <div id="btn-creationCharacter-nav" data-navType="next">{% trans %}Suivant{% endtrans %}</div>
                     </div>
                 </div>
             </div>
@@ -60,12 +60,16 @@
                 <div class="create-left">
                     <div class="characterStats">
                         <div class="borderStat">
-                            <h2>Statistiques</h2>
+                            <h2>{% trans %}Statistiques{% endtrans %}</h2>
                             <table>
                                 <tbody>
                                 {% for stat in stats %}
                                     <tr>
-                                        <td class="tableStat-name">{{ stat[0] }}</td>
+                                        {% if params["_locale"] == "fr" %}
+                                            <td class="tableStat-name">{{ stat[0] }}</td>
+                                        {% else %}
+                                            <td class="tableStat-name">{{ stat[2] }}</td>
+                                        {% endif %}
                                         <td class="tableStat-manager">
                                             <span id="statDecrease" data-stat="{{ stat[1] }}">-</span>
                                             <span id="statCurrent" data-stat="{{ stat[1] }}">10</span>
@@ -75,7 +79,7 @@
                                 {% endfor %}
                                 </tbody>
                                 <tr class="remainingPoints">
-                                    <td colspan="2">Points restant : <span id="points">{{ statPoints }}</span></td>
+                                    <td colspan="2">{% trans %}Points restant{% endtrans %} : <span id="points">{{ statPoints }}</span></td>
                                 </tr>
                             </table>
                         </div>
@@ -84,16 +88,16 @@
 
                 <div class="create-right">
                     <div class="races-description">
-                        A venir
+                        {% trans %}A venir{% endtrans %}
                     </div>
 
                     <div class="character-name">
-                        <label>Nom</label>
+                        <label>{% trans %}Nom{% endtrans %}</label>
                         {{ form_widget(characterForm.name) }}
                     </div>
 
                     <div class="submit-block">
-                        <div id="btn-creationCharacter-nav" data-navType="previous">Précédant</div>
+                        <div id="btn-creationCharacter-nav" data-navType="previous">{% trans %}Précédant{% endtrans %}</div>
                         {{ form_widget(characterForm.submit) }}
                     </div>
                 </div>

@@ -101,6 +101,50 @@
         <source>Accueil</source>
         <target>Accueil</target>
       </trans-unit>
+      <trans-unit id="nTlSlQz" resname="Le nom doit contenir au moins">
+        <source>Le nom doit contenir au moins</source>
+        <target>Le nom doit contenir au moins</target>
+      </trans-unit>
+      <trans-unit id="SduriZy" resname="Le nom doit contenir moins de">
+        <source>Le nom doit contenir moins de</source>
+        <target>Le nom doit contenir moins de</target>
+      </trans-unit>
+      <trans-unit id="YmunqJ." resname="Valider">
+        <source>Valider</source>
+        <target>Valider</target>
+      </trans-unit>
+      <trans-unit id="MNk2rQm" resname="Créer un personnage">
+        <source>Créer un personnage</source>
+        <target>Créer un personnage</target>
+      </trans-unit>
+      <trans-unit id="O4HImkq" resname="&lt;h2 id=&quot;races-description-title&quot;&gt;&lt;/h2&gt;">
+        <source>&lt;h2 id="races-description-title"&gt;&lt;/h2&gt;</source>
+        <target><![CDATA[<h2 id="races-description-title"></h2>]]></target>
+      </trans-unit>
+      <trans-unit id="3y3zvHE" resname="Suivant">
+        <source>Suivant</source>
+        <target>Suivant</target>
+      </trans-unit>
+      <trans-unit id="3iFR_fy" resname="Statistiques">
+        <source>Statistiques</source>
+        <target>Statistiques</target>
+      </trans-unit>
+      <trans-unit id="fI3Zz9q" resname="Points restant">
+        <source>Points restant</source>
+        <target>Points restant</target>
+      </trans-unit>
+      <trans-unit id="SgXnBFB" resname="A venir">
+        <source>A venir</source>
+        <target>A venir</target>
+      </trans-unit>
+      <trans-unit id="ssEkU20" resname="Nom">
+        <source>Nom</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="txL1hPd" resname="Précédant">
+        <source>Précédant</source>
+        <target>Précédant</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
