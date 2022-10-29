@@ -2,23 +2,20 @@
 
 namespace App\Controller;
 
-use App\Classes\CharacterCreationCheckClass;
-use App\Classes\CreateCharacterClass;
-use App\Classes\LocaleClass;
-use App\Classes\ToolboxController;
-use App\Entity\Personnage;
 use App\Entity\Races;
+use App\Entity\Personnage;
+use App\Classes\LocaleClass;
 use App\Entity\RacialAdvantage;
-use App\Entity\Talent;
-use App\Entity\UserRace;
-use App\Entity\Wallet;
 use App\Form\CreateCharacterType;
-use App\Repository\RacesRepository;
+use App\Classes\ToolboxController;
+use App\Classes\CreateCharacterClass;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Classes\CharacterCreationCheckClass;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CharacterCreationController extends AbstractController
 {
@@ -30,9 +27,9 @@ class CharacterCreationController extends AbstractController
     }
 
     #[Route('/{_locale}/character-creation', name: 'characterCreation')]
+    #[IsGranted("ROLE_USER")]
     public function characterCreation(Request $request, CharacterCreationCheckClass $charCreation, ToolboxController $toolboxController, CreateCharacterClass $createCharacter): Response
     {
-        $locale = new LocaleClass($request);
         $personnage = new Personnage();
         $createCharacterForm = $this->createForm(CreateCharacterType::class, $personnage);
 
@@ -59,16 +56,15 @@ class CharacterCreationController extends AbstractController
                 $this->entityManager->flush();
                 return $this->redirectToRoute('game');
             } else {
-                // Je crois qu'il n'est pas appelé dans le template
+                // Dans le template, le code est commenté
                 $this->addFlash("warning", "Echec");
             }
         }
 
+        $locale = new LocaleClass($request);
         $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
         $races = $this->doctrine->getRepository(Races::class)->findAll();
         $racialAdvantage = $this->doctrine->getRepository(RacialAdvantage::class)->findAll();
-        $stats = $createCharacter->generateStatArray();
-
         
         if(count($personnageList) > 0){
             return $this->redirectToRoute('home');
@@ -77,10 +73,10 @@ class CharacterCreationController extends AbstractController
         return $this->render('main/create.html.twig', [
             "route" => $locale->setRoute(),
             "params" => $locale->setRouteParams(),
+            "stats" => $createCharacter->generateStatArray(),
+            "characterForm" => $createCharacterForm->createView(),
             "races" => $races,
             "advantages" => $racialAdvantage,
-            "stats" => $stats,
-            "characterForm" => $createCharacterForm->createView(),
             "statPoints" => 10
         ]);
     }
