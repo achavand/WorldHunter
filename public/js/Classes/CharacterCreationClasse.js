@@ -81,10 +81,11 @@ let CharacterCreation = {
                 ){
                 return;
             }
-            if (remainingPoints.innerHTML < 0 || remainingPoints.innerHTML > this.maxStatPoint) {
+            if (remainingPoints.innerHTML < 0 || remainingPoints.innerHTML >= this.maxStatPoint) {
                 // Faut modifier le fonctionnement de ce bloc, pour que le message soit traduit (ça ne sera sûrement plus du JS)
                 // Définir le traitement souhaité ici
                 alert("Une erreur est survenue");
+                return;
             }
 
             if(action == "increase" && remainingPoints.innerHTML !=0){
