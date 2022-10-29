@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Classes\LocaleClass;
 use App\Entity\Personnage;
+use App\Classes\LocaleClass;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
@@ -20,6 +21,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/{_locale}/home', name: 'home')]
+    #[IsGranted("ROLE_USER")]
     public function index(): Response
     {
         if($this->getUser()){
@@ -48,9 +50,9 @@ class MainController extends AbstractController
     }
 
     #[Route('/{_locale}/game', name: 'game')]
+    #[IsGranted("ROLE_USER")]
     public function game(): Response
     {
-
         return $this->render('main/game.html.twig', [
             'controller_name' => 'MainController',
         ]);
