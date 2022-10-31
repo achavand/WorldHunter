@@ -81,7 +81,7 @@ let CharacterCreation = {
                 ){
                 return;
             }
-            if (remainingPoints.innerHTML < 0 || remainingPoints.innerHTML >= this.maxStatPoint) {
+            if(remainingPoints.innerHTML < 0){
                 location.reload();
                 return;
             }
@@ -130,7 +130,7 @@ let CharacterCreation = {
             checkSum += Number(stat.innerHTML)
         });
 
-        if(!checkSum == this.getMaxStatPointPossible()){
+        if(checkSum !== this.getMaxStatPointPossible()){
             statsValid = false;
         }
         return statsValid;
@@ -139,7 +139,7 @@ let CharacterCreation = {
     getMaxStatPointPossible:function(){
         let sum = 0;
         document.querySelectorAll("#statCurrent").forEach(stat => {
-            sum += Number(stat.innerHTML)
+            sum += this.defaultStatValue;
         });
         // Voir pour variabiliser le 10
         sum += 10

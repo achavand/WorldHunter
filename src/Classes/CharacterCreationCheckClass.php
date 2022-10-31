@@ -86,15 +86,30 @@ class CharacterCreationCheckClass
      */
     private function checkStats($statsList):bool
     {
+        $statCount = 0;
+        $sum = 0;
+        $maxSumPossible = 10;
+
         foreach ($statsList as $key => $data) {
+            $statCount++;
             $data = intval($data);
             if(is_int($data) && $data >= 5 && $data <= 20){
+                $sum += $data;
+                $maxSumPossible += 10;
                 $isValid = true;
             } else {
                 $isValid = false;
                 break;
             }
         }
+        // if("LE NOMBRE TOTAL DE POINTS DES STATS != DU NOMBRE TOTAL DE POINTS POSSIBLE"){
+        //     $isValid = false;
+        // } else {
+
+        if($sum != $maxSumPossible){
+            $isValid = false;
+        }
+
         return $isValid;
     }
     
