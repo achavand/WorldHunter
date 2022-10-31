@@ -20,7 +20,7 @@ class MainController extends AbstractController
         $this->entityManager = $this->doctrine->getManager();
     }
 
-    #[Route('/{_locale}/home', name: 'home')]
+    #[Route('/{_locale}/choice', name: 'choiceCharacter')]
     #[IsGranted("ROLE_USER")]
     public function index(): Response
     {
@@ -29,11 +29,8 @@ class MainController extends AbstractController
             $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
 
             if(count($personnageList) > 0){
-                // On renvoie vers une page temporaire pour le moment, qui servira de page de jeu plus tard
-                // Il faudra traiter differents cas tel que le choix du personnage par exemple (on complètera plus tard)
-
-                // On créera tout cela un peu plus tard (Penser à donner un vrai nom à la route et à supprimer la route de test un peu plus bas)
-                return $this->redirectToRoute('game');
+                // Il faut choisir le personnage
+                return $this->redirectToRoute('home');
             } else {
                 return $this->redirectToRoute('characterCreation');
             }
@@ -49,11 +46,12 @@ class MainController extends AbstractController
         ]);
     }
 
-    #[Route('/{_locale}/game', name: 'game')]
+
+    #[Route('/{_locale}/home', name: 'home')]
     #[IsGranted("ROLE_USER")]
-    public function game(): Response
+    public function home(): Response
     {
-        return $this->render('main/game.html.twig', [
+        return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }

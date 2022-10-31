@@ -54,7 +54,7 @@ class CharacterCreationController extends AbstractController
                 $this->entityManager->persist($wallet);
                 $this->entityManager->persist($userRace);
                 $this->entityManager->flush();
-                return $this->redirectToRoute('game');
+                return $this->redirectToRoute('home');
             } else {
                 // Dans le template, le code est commenté
                 $this->addFlash("warning", "Echec");
@@ -67,7 +67,7 @@ class CharacterCreationController extends AbstractController
         $racialAdvantage = $this->doctrine->getRepository(RacialAdvantage::class)->findAll();
         
         if(count($personnageList) > 0){
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('choiceCharacter');
         }
 
         return $this->render('main/create.html.twig', [
