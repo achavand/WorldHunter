@@ -15,6 +15,56 @@
             text-shadow: 7px 7px 7px black;
         }
     }
+
+    .d-scoresList {
+        background: rgba(242, 220, 170, .7);
+        width: max-content;
+        color: black;
+        font-size: 1.4rem;
+
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+
+            thead {
+                font-size: 1.8rem;
+                font-weight: bolder;
+                height: 4rem;
+            }
+
+            th,td { 
+                padding: 12px; 
+                border-right: 1px solid black;
+
+                &:last-child{
+                    border: none;
+                }
+            }
+
+            tbody {
+                tr {
+                    height: 3rem;
+                    &:nth-child(n) {
+                        background-color: #34e89e;
+                    }
+                    &:nth-child(2n){
+                        background-color: #0f3443;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            li {
+                @include marginPadding(0 5px, 7px);
+            }
+        }
+    }
 }
 
 @media screen and (max-width: $dimension1000) {
@@ -34,6 +84,16 @@
                 margin: 15px auto;
             }
         }
-    }
 
+        .d-scoresList{
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .d-scoresList{
+        width: 100%;
+    }
 }

@@ -20,6 +20,9 @@ a {
   background-attachment: fixed;
   background-color: #464646; }
 
+.textCenter {
+  text-align: center; }
+
 .display-none {
   display: none !important; }
 
@@ -128,6 +131,38 @@ a {
       font-size: 1.3rem;
       line-height: 1.7rem;
       text-shadow: 7px 7px 7px black; }
+  .disconnect-container .d-scoresList {
+    background: rgba(242, 220, 170, 0.7);
+    width: max-content;
+    color: black;
+    font-size: 1.4rem; }
+    .disconnect-container .d-scoresList table {
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse; }
+      .disconnect-container .d-scoresList table thead {
+        font-size: 1.8rem;
+        font-weight: bolder;
+        height: 4rem; }
+      .disconnect-container .d-scoresList table th, .disconnect-container .d-scoresList table td {
+        padding: 12px;
+        border-right: 1px solid black; }
+        .disconnect-container .d-scoresList table th:last-child, .disconnect-container .d-scoresList table td:last-child {
+          border: none; }
+      .disconnect-container .d-scoresList table tbody tr {
+        height: 3rem; }
+        .disconnect-container .d-scoresList table tbody tr:nth-child(n) {
+          background-color: #34e89e; }
+        .disconnect-container .d-scoresList table tbody tr:nth-child(2n) {
+          background-color: #0f3443;
+          color: white; }
+    .disconnect-container .d-scoresList .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .disconnect-container .d-scoresList .pagination li {
+        margin: 0 5px;
+        padding: 7px; }
 
 @media screen and (max-width: 1000px) {
   .disconnect-container {
@@ -141,7 +176,12 @@ a {
       margin: 0 auto; }
       .disconnect-container .log .log-form, .disconnect-container .log h1 {
         width: 70%;
-        margin: 15px auto; } }
+        margin: 15px auto; }
+    .disconnect-container .d-scoresList {
+      width: 100%; } }
+@media screen and (max-width: 750px) {
+  .d-scoresList {
+    width: 100%; } }
 .langList {
   text-align: center; }
   .langList li {
