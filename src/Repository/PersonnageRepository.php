@@ -39,6 +39,17 @@ class PersonnageRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Personnage[] Returns an array of Personnage objects
+    */
+   public function findByLevelDesc(): array
+   {
+        return $this->findBy(array(), array('level' => 'DESC'));
+   }
+
+
+
+    
 //    /**
 //     * @return Personnage[] Returns an array of Personnage objects
 //     */

@@ -145,6 +145,22 @@
         <source>Précédant</source>
         <target>Précédant</target>
       </trans-unit>
+      <trans-unit id="2fK1Jru" resname="Personnage">
+        <source>Personnage</source>
+        <target>Personnage</target>
+      </trans-unit>
+      <trans-unit id="uAQxpGQ" resname="Joueur">
+        <source>Joueur</source>
+        <target>Joueur</target>
+      </trans-unit>
+      <trans-unit id="gRKOXig" resname="Serveur">
+        <source>Serveur</source>
+        <target>Serveur</target>
+      </trans-unit>
+      <trans-unit id="FwkwXJ_" resname="Level">
+        <source>Level</source>
+        <target>Level</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

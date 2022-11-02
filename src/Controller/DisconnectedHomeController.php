@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Classes\LocaleClass;
 use App\Entity\DisconnectedPresentation;
+use App\Repository\PersonnageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Knp\Component\Pager\PaginatorInterface;
 
 class DisconnectedHomeController extends AbstractController
 {
@@ -54,6 +56,45 @@ class DisconnectedHomeController extends AbstractController
             "presentation" => $presentation,
             "route" => $locale->setRoute(),
             "params" => $locale->setRouteParams()
+        ]);
+    }
+
+    #[Route('/{_locale}/scores', name: 'disconnected-scores')]
+    public function disconnectedScores(Request $request, PersonnageRepository $personnageRepository, PaginatorInterface $paginator): Response
+    {
+        // if($this->getUser() == null){
+        //     return $this->redirectToRoute("disconnected_home");
+        // }
+
+        $locale = new LocaleClass($request);
+        $data = $personnageRepository->findByLevelDesc();
+
+        $scores = $paginator->paginate(
+            $data,
+            $request->query->getInt("page", 1),
+            //10
+            3
+        );
+
+        return $this->render('disconnectedHome/scores.html.twig',[
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams(),
+            "scores" => $scores
+        ]);
+    }
+
+    #[Route('/{_locale}/decouverte', name: 'discover')]
+    public function discover(Request $request, PersonnageRepository $personnageRepository, PaginatorInterface $paginator): Response
+    {
+        // if($this->getUser() == null){
+        //     return $this->redirectToRoute("disconnected_home");
+        // }
+
+        $locale = new LocaleClass($request);
+
+        return $this->render('disconnectedHome/discover.html.twig',[
+            "route" => $locale->setRoute(),
+            "params" => $locale->setRouteParams(),
         ]);
     }
 }
