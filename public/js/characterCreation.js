@@ -34,7 +34,6 @@ genderInput.value = genderList[0].children[0].dataset.gender;
 
 /**
  * When selecting a gender, switch the classes that indicate which one is selected
- * @date 2022-10-27
  * @param {any} characterListId
  */
 function genderManager(characterListId){
