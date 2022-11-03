@@ -161,6 +161,22 @@
         <source>Level</source>
         <target>Level</target>
       </trans-unit>
+      <trans-unit id="oLQ98G9" resname="Silver">
+        <source>Silver</source>
+        <target>Silver</target>
+      </trans-unit>
+      <trans-unit id="YknfQ2f" resname="Gold">
+        <source>Gold</source>
+        <target>Gold</target>
+      </trans-unit>
+      <trans-unit id="KPRXHyi" resname="Mon compte">
+        <source>Mon compte</source>
+        <target>My account</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Logout</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
