@@ -380,4 +380,62 @@ a {
       margin: 0 auto;
       padding: 5px 10px; }
 
+.gameContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex; }
+  .gameContainer .gameBar {
+    background-color: #483D8B;
+    width: 15%;
+    min-width: 280px; }
+    .gameContainer .gameBar .headerGameInterface {
+      margin-bottom: 15px; }
+      .gameContainer .gameBar .headerGameInterface .characterInfo {
+        display: flex; }
+        .gameContainer .gameBar .headerGameInterface .characterInfo img {
+          width: 90px;
+          height: 90px;
+          padding: 20px; }
+        .gameContainer .gameBar .headerGameInterface .characterInfo .characterInfo-right {
+          width: 50%; }
+          .gameContainer .gameBar .headerGameInterface .characterInfo .characterInfo-right .xpBar {
+            background-color: white;
+            height: 1.4rem;
+            border-radius: 15px; }
+            .gameContainer .gameBar .headerGameInterface .characterInfo .characterInfo-right .xpBar .xpBarProgress {
+              height: 100%;
+              background-color: blue;
+              border-radius: 15px; }
+      .gameContainer .gameBar .headerGameInterface .walletInfo, .gameContainer .gameBar .headerGameInterface .accountManager {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.15rem; }
+        .gameContainer .gameBar .headerGameInterface .walletInfo p:first-child, .gameContainer .gameBar .headerGameInterface .walletInfo a:first-child, .gameContainer .gameBar .headerGameInterface .accountManager p:first-child, .gameContainer .gameBar .headerGameInterface .accountManager a:first-child {
+          margin-right: 20px; }
+      .gameContainer .gameBar .headerGameInterface .accountManager a {
+        color: red;
+        font-weight: bolder; }
+    .gameContainer .gameBar .menuGameInterface {
+      display: flex;
+      flex-direction: column; }
+      .gameContainer .gameBar .menuGameInterface .menuLink {
+        height: 3.5rem;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 12px auto;
+        background: linear-gradient(to left, #34e89e, #0f3443);
+        color: black;
+        font-size: 2rem;
+        box-shadow: 4px 4px 4px black; }
+        .gameContainer .gameBar .menuGameInterface .menuLink:hover {
+          transition: box-shadow, filter .3s;
+          box-shadow: none;
+          filter: brightness(1.1); }
+
 /*# sourceMappingURL=style.css.map */

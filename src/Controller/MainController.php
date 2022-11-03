@@ -29,7 +29,7 @@ class MainController extends AbstractController
             $personnageList = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
 
             if(count($personnageList) > 0){
-                // Il faut choisir le personnage
+                // Il faut choisir le personnage (pour l'instant je vais empêcher d'avoir plusieurs personnage)
                 return $this->redirectToRoute('home');
             } else {
                 return $this->redirectToRoute('characterCreation');
@@ -37,13 +37,6 @@ class MainController extends AbstractController
         } else{
             return $this->redirectToRoute('disconnected_home');
         }
-
-
-        // Verifier le nombre de personnage
-            // Si 0 redirigier vers création de personnage
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
     }
 
 
@@ -51,8 +44,14 @@ class MainController extends AbstractController
     #[IsGranted("ROLE_USER")]
     public function home(): Response
     {
+        if($this->getUser()){
+            $personnage = new Personnage();
+            $personnage = $this->doctrine->getRepository(Personnage::class)->findBy(['user_personnage' => $this->getUser()]);
+        } else{
+            return $this->redirectToRoute('disconnected_home');
+        }
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'personnage' => $personnage,
         ]);
     }
 }

@@ -23,5 +23,15 @@ let Toolbox = {
                 item.classList.remove(classToRemove);
             }
         })
+    },
+
+    /**
+     * Create a percentage
+     * @param {Number} current
+     * @param {Number} total
+     * @returns {string}
+     */
+    createPercentage:function(current, total){
+        return ((current / total) *100).toString();
     }
 }

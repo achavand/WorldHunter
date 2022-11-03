@@ -1,0 +1,27 @@
+<div class="headerGameInterface">
+    <div class="characterInfo">
+        <img src="{{ asset(personnage[0].getUserRace().getUrlImg()) }}" alt="Avatar">
+        <div class="characterInfo-right">
+            <p>{{ personnage[0].getName() }} <small>(lv {{ personnage[0].getLevel() }})</small></p>
+            <div class="xpBar"> 
+                <div class="xpBarProgress" data-currentXp="{{ personnage[0].getCurrentXp() }}" data-totalXp="{{ personnage[0].getTotalXp() }}"></div> 
+            </div>
+        </div>
+    </div>
+    <div class="walletInfo">
+        <p>{{ personnage[0].getWallet().getSilver() }} {% trans %}Silver{% endtrans %}</p>
+        <p>{{ personnage[0].getWallet().getGold() }} {% trans %}Gold{% endtrans %}</p>
+    </div>
+    <div class="accountManager">
+        <a href="#">{% trans %}Mon compte{% endtrans %}</a>
+        <a href="{{ path("logout") }}">{% trans %}Déconnexion{% endtrans %}</a>
+    </div>
+</div>
+
+<div class="menuGameInterface">
+    <a href="" class="menuLink">Menu</a>
+    <a href="" class="menuLink">Menu</a>
+    <a href="" class="menuLink">Menu</a>
+    <a href="" class="menuLink">Menu</a>
+    <a href="" class="menuLink">Menu</a>
+</div>
