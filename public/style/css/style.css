@@ -179,9 +179,6 @@ a {
         margin: 15px auto; }
     .disconnect-container .d-scoresList {
       width: 100%; } }
-@media screen and (max-width: 750px) {
-  .d-scoresList {
-    width: 100%; } }
 .langList {
   text-align: center; }
   .langList li {
